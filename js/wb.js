@@ -99,6 +99,7 @@ function handleUpdateForNewObject(update) {
 						   update[5], update[6]);
 				} else {
 					obj.remove();
+					obj.deleted = true;
 				}
 			}
 		}
