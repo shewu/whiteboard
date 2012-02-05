@@ -1,10 +1,10 @@
-<?
-include('util/header.php');
-include('util/mysql.php');
-?>
-
-<body onload="resizeCanvas()" onresize="resizeCanvas()">
-
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>Meatboard</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script src="js/jq.js"></script>
+<script src="jq/wb.js"></script>
 <script>
 $(document).ready(function() {
 	$('#canvas').bind('contextmenu', function(e) {
@@ -40,19 +40,26 @@ $(document).ready(function() {
 			backgroundColor: '#E0EDFE',
 			cursor: 'pointer'
 		});
-		if ($(this).children().size() > 0) {
+		if ($(this).children().size() > 0) 
 			$(this).find('.innerLi').show();
-			$(this).css({
-				cursor: 'default'
-			});
-		},
-		function() {
-			$(this).css('background-color', '#fff');
-			$(this).find('.innerLi').hide();
-		}
+		$(this).css({
+			cursor: 'default'
+		});
+	},
+	function() {
+		$(this).css('background-color', '#fff');
+		$(this).find('.innerLi').hide();
+	}
 	});
 });
 </script>
+
+</head>
+<?
+include('util/mysql.php');
+?>
+
+<body onload="resizeCanvas()" onresize="resizeCanvas()">
 
 <header>
 <?
