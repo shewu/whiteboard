@@ -369,6 +369,7 @@ function hamburgerMenuHandler(e) {
 }
 
 function processImgUpload() {
-	alert(document.forms['imgUploadForm'].elements['imgURL'].value);
+	//alert(document.forms['imgUploadForm'].elements['imgURL'].value);
+	alert(document.forms['imgUploadForm'].elements['imgFile'].value);
 }
 
