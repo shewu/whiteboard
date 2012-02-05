@@ -2,7 +2,11 @@
 include('util/mysql.php');
 
 if (isset($_GET["imgUploadSubmit"])) {
-	;
+	if (strlen($_GET["imgUploadURL"]) > 0) {
+		echo "upload url = ".$_GET["imgUploadURL"];
+	} else if (strlen($_GET["imgUploadFile"]) > 0) {
+		echo "upload file = ".$_GET["imgUploadFile"];
+	}
 }
 
 function get_field($key) {
