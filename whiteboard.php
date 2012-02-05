@@ -88,6 +88,9 @@ $(document).ready(function() {
 	$(document).click(function() {
 		$('#vmenu').hide();
 	});
+	$('#imgUploadForm').bind('contextmenu',function(e) {
+		e.stopPropagation();
+	});
 	menuEvent = null;
 });
 
