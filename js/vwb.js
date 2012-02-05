@@ -40,6 +40,7 @@ $(document).ready(function() {
 });
 
 $('#canvas').scroll(function() {
+	console.log($('#canvas').height());
 	if ($('#canvas').height() - $(window).height() <= $(window).scrollTop() + 15) {
 		$('#canvas').css('height', $('#canvas').height + 100);
 	}
@@ -47,3 +48,4 @@ $('#canvas').scroll(function() {
 		$('#canvas').css('width', $('#canvas').width + 100);
 	}
 });
+
