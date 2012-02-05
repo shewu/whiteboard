@@ -11,7 +11,7 @@ switch($_GET["action"]) {
 		update_object();
 		break;
 	case "create_connection":
-		echo get_new_connetion();
+		echo get_new_connection();
 		break;
 }
 
