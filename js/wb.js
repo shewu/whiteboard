@@ -27,7 +27,7 @@ function Obj(id, type) {
 		}
 	};
 }
-objects = new Array();
+objs = { };
 
 // AJAX - keep updated with the server using jquery AJAX
 
@@ -53,9 +53,11 @@ function retrieveAllObjects() {
 		data: "action=get_objects&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
-				objs = eval(data);
-				for(var i = 0; i < objs.length; i++) {
-					objects = new Obj(parseInt(objs[i][0]), objs[i][1]);
+				objs_unparsed = eval(data);
+				for(var i = 0; i < objs_unparsed.length; i++) {
+					var id = parseInt(objs_unparsed[i][0]);
+					var type = objs_unparsed[i][1];
+					objs[id] = new Obj(id, type);
 				}
 				retrieveAllUpdates(false);
 			}
@@ -69,8 +71,9 @@ function handleUpdateForNewObject(update) {
 		data: "action=get_object_type&object_id=" + update[0] + "&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
-				var obj = new Obj(parseInt(update[0]), data);
-				objs.push(obj);	
+				var id = parseInt(update[0]);
+				var obj = new Obj(id, data);
+				objs[id] = obj;
 				obj.update(update[1], update[2], update[3], update[4],
 				           update[5], update[6]);
 			}
@@ -93,14 +96,14 @@ function retrieveAllUpdates(onlyOnce) {
 					var id = parseInt(update[0]);
 					var deleted = update[7];
 					var found = false;
-					for(var i = 0; i < objs.length; i++) {
+					for(i in objs) {
 						if(objs[i].id == id) {
 							if(!deleted) {
 								objs[i].update(update[1], update[2], update[3], update[4],
 						        	           update[5], update[6]);
 							} else {
 								objs[i].remove();
-								objs.splice(i, i);
+								delete objs[i];
 							}
 							found = true;
 							break;
@@ -130,6 +133,7 @@ function sendUpdateCreate(value, x, y, div) {
 		data: data,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
+				if(div != null)
 				div.remove();
 				retrieveAllUpdates(true);
 			}
@@ -177,12 +181,7 @@ function sendDeleteUpdate(obj) {
 		url: URL,
 		data: data
 	});
-	for(var i = 0; i < objs.length; i++) {
-		if(objs[i] == obj) {
-			objs.splice(i, i);
-			break;
-		}
-	}
+	delete objs[obj.id];
 }
 
 // keep these two values in sync with the css kthx
@@ -203,12 +202,10 @@ function resizeCanvas() {
 
 function getObjFromDiv(div) {
 	id = div.attr('objid');
-	for(i in objs) {
-		if(objs[i].id == id) {
-			return objs[i];
-		}
-	}
-	return null;
+	if(objs[id])
+		return objs[id];
+	else
+		return null;
 }
 
 function textareaBlurFn() {
