@@ -361,7 +361,7 @@ function textMenuHandler(e) {
 function imageMenuHandler(e) {
 	e.stopPropagation();
 	$('#vmenu').css('display', 'none');
-	alert('image');
+	$('.overlayLightbox').css('display', 'block');
 	return false;
 }
 

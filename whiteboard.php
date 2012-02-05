@@ -74,6 +74,11 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <div class=firstLi onclick="hamburgerMenuHandler(event)">Hamburger</div>
 </div>
 
+<div class=overlayLightbox>
+<div class=overlayContent>
+<a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a>
+</div>
+</div>
 
 <div id=canvas>
 </div>
