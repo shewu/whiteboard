@@ -1,31 +1,4 @@
-<!DOCTYPE html>
-<html lang=en>
-<head>
-<title>Meatboard</title>
-<link rel="stylesheet" type="text/css" href="css/main.css" />
-<script src="js/jq.js"></script>
-<script src="js/wb.js"></script>
-<script>
-$(document).bind('contextmenu', function(e) {
-	$('#vmenu').css({
-		top: e.pageY+'px',
-		left: e.pageX+'px'
-	}).show();
-	return false;
-});
-
-$(document).ready(function() {
-	$('#vmenu').click(function() {
-		$('#vmenu').hide();
-	});
-	$(document).click(function() {
-		$('#vmenu').hide();
-	});
-});
-</script>
-
-</head>
-<?
+<?php
 include('util/mysql.php');
 
 function get_field($key) {
@@ -56,8 +29,39 @@ if(get_field('create') == 'yes') {
 	mysql_free_result($result);
 }
 
-echo "<body onload=\"whiteboard_id = $whiteboard_id; resizeCanvas();\" onresize=\"resizeCanvas();\">";
 ?>
+
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>Meatboard</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script src="js/jq.js"></script>
+<script src="js/wb.js"></script>
+<script>
+$(document).bind('contextmenu', function(e) {
+	$('#vmenu').css({
+		top: e.pageY+'px',
+		left: e.pageX+'px'
+	}).show();
+	return false;
+});
+
+$(document).ready(function() {
+	$('#vmenu').click(function() {
+		$('#vmenu').hide();
+	});
+	$(document).click(function() {
+		$('#vmenu').hide();
+	});
+});
+
+whiteboard_id = <?php echo "$whiteboard_id"; ?>;
+</script>
+
+</head>
+
+<body onload="resizeCanvas();" onresize="resizeCanvas();">
 
 <header>
 </header>
@@ -72,7 +76,7 @@ echo "<body onload=\"whiteboard_id = $whiteboard_id; resizeCanvas();\" onresize=
 <div id=canvas>
 </div>
 
-<?
+<?php
 include('util/footer.php');
 ?>
 
