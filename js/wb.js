@@ -416,9 +416,7 @@ function processImgFileUpload(file) {
 	xhr.open('POST', 'http://api.imgur.com/2/upload.json');
 	xhr.onload = function() {
 		// here is the response from the server
-		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
-		//createImagelet(rsp);
 		sendUpdateCreate("image", rsp, posx, posy, null);
 	}
 
@@ -426,6 +424,7 @@ function processImgFileUpload(file) {
 }
 
 function processImgUpload() {
+	$('.overlayLightbox').css('display', 'none');
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
 	switch ($('input[name=imgRadio]:checked', '#imgUploadForm').val()) {
