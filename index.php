@@ -5,8 +5,6 @@ include('util/header.php');
 
 <div id=capsule>
 Hello, world! Time to test automatic pulling.
-</div>
-
 <?
 $whiteboards = get_whiteboards();
 $line = mysql_fetch_array($whiteboards);
@@ -22,7 +20,10 @@ if($line) {
 	echo 'No whiteboards currently';
 }
 mysql_free_result($whiteboards);
+?>
+</div>
 
+<?
 include('util/footer.php');
 ?>
 
