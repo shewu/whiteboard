@@ -12,8 +12,8 @@ if (isset($_POST["imgUploadSubmit"])) {
 
 			$pvars = array('image' => base64_encode($data), 'key' => 'ef01658e300dbcf7aa0ecdd18a3bed7c');
 			$timeout = 30;
-			$curl = curl_init();
 			echo "hi";
+			$curl = curl_init();
 			echo "curl = ".$curl."<br/>";
 
 			curl_setopt($curl, CURLOPT_URL, 'http://api.imgur.com/2/upload.xml');
