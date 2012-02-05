@@ -370,7 +370,7 @@ function imageMenuHandler(e) {
 	overlayContent = $("<div>");
 	overlayContent.addClass("overlayContent");
 	overlayContent.text('hello');
-	overlayLightBox.append(overlayContent);
+	overlayLightbox.append(overlayContent);
 	return false;
 }
 
