@@ -31,7 +31,8 @@ function createTextlet(e) {
 	$textarea.blur(function() {
 		var text = $(this).html();
 		var div = $("<div>");
-		div.blur(function() {
+		div.click(function(event) {
+			event.stopPropagation();
 			var content = $(this).html();
 			var ta = $("<textarea/>");
 		})
