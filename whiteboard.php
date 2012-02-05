@@ -2,13 +2,26 @@
 if (isset($_POST["imgUploadSubmit"])) {
 	$iUURL = $_POST["imgURL"];
 	$iUFile = $_POST["imgUpload"];
-	var_dump($_POST);
-	var_dump($_FILES);
 	if (strlen($iUURL) > 0) {
 		;
 	} else if (strlen($iUFile) > 0) {
-		echo "uploaded file<br/>";
-		print_r($_FILES["imgUpload"]);
+		if (move_uploaded_file($_FILES['imgUpload']['tmp_name'], "/tmp/".$_FILES['imgUpload']['name'])) {
+			$data = file_get_contents('/tmp/'.$_FILES['imgUpload']['name']);
+
+			$pvars = array('image' => base64_encode($data), 'key' => ef01658e300dbcf7aa0ecdd18a3bed7c);
+			$timeout = 30;
+			$curl = curl_init();
+
+			curl_setopt($curl, CURLOPT_URL, 'http://api.imgur.com/2/upload.xml');
+			curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
+			curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
+
+			$xml = curl_exec($curl);
+
+			curl_close($curl);
+		}
 	}
 }
 
