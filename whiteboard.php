@@ -48,6 +48,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <body onload="resizeCanvas();" onresize="resizeCanvas();">
 
 <header>
+<a href=/whiteboard/>Home</a> - <? echo $name; ?>
 </header>
 
 <div id=vmenu>
