@@ -4,7 +4,6 @@ include('util/header.php');
 ?>
 
 <div id=capsule>
-Hello, world! Time to test automatic pulling.
 <?
 $whiteboards = get_whiteboards();
 $line = mysql_fetch_array($whiteboards);
