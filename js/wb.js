@@ -237,10 +237,13 @@ function textareaBlurFn() {
 	div.mousedown(objectMousedownFn);
 	div.text(text);
 	if (text.length > 0) {
+		console.log("textbox to regular div");
 		if(obj == null) {
+			console.log("obj is null case");
 			$(this).remove();
 			sendUpdate(obj, text, x, y);
 		} else {
+			console.log("obj is not null case");
 			$(this).replaceWith(div);
 			obj.div = div;
 			obj.currentlyBeingEditted = false;
