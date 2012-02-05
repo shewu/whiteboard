@@ -123,11 +123,10 @@ function sendUpdate(obj, value, x, y) {
 		data = "action=create_object";
 		data += "&type=textbox";
 		data += "&value=" + value;
-		data += "&style=" + style;
 		data += "&position_x" + x;
 		data += "&position_y" + y;
 		data += "&" + get_id_string;
-		s.ajax({
+		$.ajax({
 			url: URL,
 			data: data
 		});
@@ -285,7 +284,7 @@ function objectMousedownFn(event) {
 }
 
 function createTextbox() {
-	if(menuEvent != null)
+	if (menuEvent != null)
 		createTextlet(menuEvent);
 }
 
@@ -303,6 +302,7 @@ function createTextlet(e) {
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	var $textarea = $("<textarea class=textlet style='top:"+posy+"px;left:"+posx+"px'/>");
+	$textarea.attr('title','-1');
 	$textarea.blur(textareaBlurFn);
 	$textarea.click(function(event) {
 		event.stopPropagation();
@@ -367,18 +367,21 @@ $(document).ready(function() {
 
 function textMenuHandler(e) {
 	e.stopPropagation();
+	$('#vmenu').css('display', 'none');
 	createTextbox();
 	return false;
 }
 
 function imageMenuHandler(e) {
 	e.stopPropagation();
+	$('#vmenu').css('display', 'none');
 	alert('image');
 	return false;
 }
 
 function hamburgerMenuHandler(e) {
 	e.stopPropagation();
+	$('#vmenu').css('display', 'none');
 	alert('hamburger!');
 	return false;
 }

@@ -41,8 +41,8 @@ if(get_field('create') == 'yes') {
 <script>
 $(document).bind('contextmenu', function(e) {
 	$('#vmenu').css({
-		top: e.pageY+'px',
-		left: e.pageX+'px'
+		top: (e.pageY-10)+'px',
+		left: (e.pageX-10)+'px'
 	}).show();
 	menuEvent = e;
 	return false;
