@@ -121,18 +121,6 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </div>
 </div>
 
-<script>
-$("form").submit(function() {
-	if ($("input #imgUploadURL").val().length() > 0 || $("input #imguploadFile").val().length() > 0) {
-		alert("You have uploaded something");
-		return true;
-	} else {
-		alert("Please enter a URL or upload a file!");
-		return false;
-	}
-});
-</script>
-
 <div id=canvas>
 </div>
 
