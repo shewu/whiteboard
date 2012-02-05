@@ -127,6 +127,24 @@ function sendUpdate(obj, value, x, y) {
 	$.ajax({
 		url: URL,
 		data: data
+		success: function(data, textStatus, jqXHR) {
+			retrieveAllUpdates();
+		}
+	});
+}
+
+function sendMoveUpdate(obj, x, y) {
+	data = "action=update_object";
+	data += "&object_id=" + obj.id;
+	data += "&position_x=" + x;
+	data += "&position_y=" + y;
+	data += "&" + get_id_string;
+	$.ajax({
+		url: URL,
+		data: data
+		success: function(data, textStatus, jqXHR) {
+			retrieveAllUpdates();
+		}
 	});
 }
 
@@ -281,7 +299,7 @@ $(document).ready(function() {
 	.mouseup(function(e) {
 		isMouseDown = false;
 		if(dragged && dragObject != null)
-			sendUpdate(getObjFromDiv(dragObject), dragObject.text(), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY);
+			sendMoveUpdate(getObjFromDiv(dragObject), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY);
 		dragObject = null;
 	})
 	.mousemove(function(event) {
