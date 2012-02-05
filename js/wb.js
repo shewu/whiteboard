@@ -389,6 +389,7 @@ function createImagelet(url) {
 	imglet.append(img);
 	imglet.css('left', posx);
 	imglet.css('top', posy);
+	imglet.mousedown(objectMousedownFn);
 	$('#canvas').append(imglet);
 }
 
