@@ -83,10 +83,13 @@ function handleUpdateForNewObject(update) {
 	});
 }
 
+var retrieveAllUpdatesFirstTime = true;
 function retrieveAllUpdates() {
+	var action = (retrieveAllUpdatesFirstTime ? "get_all_latest_updates" : "get_updates");
+	retrieveAllUpdatesFirstTime = false;
 	$.ajax({
 		url: URL,
-		data: "action=get_updates&" + get_id_string,
+		data: "action=" + action + "&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
 			console.log("data = " + data);
 			if(textStatus == "success") {
@@ -168,6 +171,14 @@ function resizeCanvas() {
 	var screenViewportHeight = document.documentElement.clientHeight;
 	document.getElementById('canvas').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
 	return;
+}
+
+function getObjFromDiv(div) {
+	for(i in objs) {
+		if(objs[i].div == div) {
+			return objs[i];
+		}
+	}
 }
 
 function textareaBlurFn() {
