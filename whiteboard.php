@@ -1,5 +1,8 @@
 <?php
 if (isset($_GET["imgUploadSubmit"])) {
+	$iUURL = $_GET["imgUploadURL"];
+	$iUFile = $_GET["imgUploadFile"];
+	echo $iUURL . ";" . $iUFile;
 	if (strlen($_GET["imgUploadURL"]) > 0) {
 		echo "upload url = ".$_GET["imgUploadURL"];
 	} else if (strlen($_GET["imgUploadFile"]) > 0) {
