@@ -14,6 +14,7 @@ if($line) {
 		echo '<option value="' . $line[0] . '">' . $line[1] . '</option>';
 	} while($line = mysql_fetch_array($whiteboards));
 	echo '</select>';
+	echo '<input type="submit" value="View board" />';
 	echo '</form>';
 } else {
 	echo 'No whiteboards currently';
