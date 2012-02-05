@@ -30,12 +30,19 @@ footer {
 	overflow: auto;
 }
 
-.textlet {
+.textlet, .imglet {
 	position: absolute;
 	border: 1px dashed #666;
 	color: black;
 	display: inline;
+}
+
+.textlet {
 	padding: 5px;
+}
+
+.imglet {
+	padding: 0;
 }
 
 .vmenu {
