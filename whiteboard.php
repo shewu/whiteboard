@@ -2,11 +2,10 @@
 if (isset($_POST["imgUploadSubmit"])) {
 	var_dump($_POST);
 	$iUURL = $_POST["imgURL"];
-	$iUFile = $_POST["imgUpload"];
-	echo "hello, ".$iUURL." ".$iUFile;
+	echo "hello, ".$iUURL." ".$_FILES['imgUpload']['name'];
 	if (strlen($iUURL) > 0) {
 		;
-	} else if (strlen($iUFile) > 0) {
+	} else if (strlen($_FILES['imgUpload']['name']) > 0) {
 		if (move_uploaded_file($_FILES['imgUpload']['tmp_name'], "/tmp/".$_FILES['imgUpload']['name'])) {
 			echo "upload is good";
 			$data = file_get_contents('/tmp/'.$_FILES['imgUpload']['name']);
