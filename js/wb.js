@@ -118,34 +118,23 @@ function retrieveAllUpdates(onlyOnce) {
 	});
 }
 
-function sendUpdate(obj, value, x, y) {
-	if(obj == null) {
-		data = "action=create_object";
-		data += "&type=textbox";
-		data += "&value=" + value;
-		data += "&position_x" + x;
-		data += "&position_y" + y;
-		data += "&" + get_id_string;
-		$.ajax({
-			url: URL,
-			data: data
-		});
-	} else {
-		data = "action=update_object";
-		data += "&object_id=" + obj.id;
-		data += "&value=" + value;
-		data += "&position_x=" + x;
-		data += "&position_y=" + y;
-		data += "&" + get_id_string;
-		$.ajax({
-			url: URL,
-			data: data,
-			success: function(data, textStatus, jqXHR) {
-				if(textStatus == "success")
-					retrieveAllUpdates(true);
+function sendUpdateCreate(value, x, y, div) {
+	data = "action=create_object";
+	data += "&type=textbox";
+	data += "&value=" + value;
+	data += "&position_x=" + x;
+	data += "&position_y=" + y;
+	data += "&" + get_id_string;
+	$.ajax({
+		url: URL,
+		data: data,
+		success: function(data, textStatus, jqXHR) {
+			if(textStatus == "success") {
+				div.remove();
+				retrieveAllUpdates(true);
 			}
-		});
-	}
+		}
+	});
 }
 
 function sendValueUpdate(obj, value) {
@@ -157,8 +146,9 @@ function sendValueUpdate(obj, value) {
 		url: URL,
 		data: data,
 		success: function(data, textStatus, jqXHR) {
-			if(textStatus == "success")
+			if(textStatus == "success") {
 				retrieveAllUpdates();
+			}
 		}
 	});
 }
@@ -212,7 +202,7 @@ function resizeCanvas() {
 }
 
 function getObjFromDiv(div) {
-	id = div.attr('title');
+	id = div.attr('objid');
 	for(i in objs) {
 		if(objs[i].id == id) {
 			return objs[i];
@@ -231,14 +221,13 @@ function textareaBlurFn() {
 	div.css('left', x);
 	div.css('top', y);
 	div.css('white-space', 'pre');
-	div.attr('title', $(this).attr('title'));
+	div.attr('objid', $(this).attr('objid'));
 	div.click(divClickFn);
 	div.mousedown(objectMousedownFn);
 	div.text(text);
 	if (text.length > 0) {
 		if (obj == null) {
-			$(this).remove();
-			sendUpdate(obj, text, x, y);
+			sendUpdateCreate(text, x, y, $(this));
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
@@ -264,7 +253,7 @@ function divClickFn(event) {
 		ta.addClass("textlet");
 		ta.css('left', $(this).position().left);
 		ta.css('top', $(this).position().top);
-		ta.attr('title', $(this).attr('title'));
+		ta.attr('objid', $(this).attr('objid'));
 		ta.blur(textareaBlurFn);
 		ta.click(textareaClickFn);
 		ta.val(content);
@@ -302,7 +291,7 @@ function createTextlet(e) {
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	var $textarea = $("<textarea class=textlet style='top:"+posy+"px;left:"+posx+"px'/>");
-	$textarea.attr('title','-1');
+	$textarea.attr('objid','-1');
 	$textarea.blur(textareaBlurFn);
 	$textarea.click(function(event) {
 		event.stopPropagation();
@@ -321,7 +310,7 @@ function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, objid) {
 	div.css('white-space', 'pre');
 	div.click(divClickFn);
 	div.text(value);
-	div.attr('title', '' + objid);
+	div.attr('objid', '' + objid);
 	div.mousedown(objectMousedownFn);
 	$('#canvas').append(div);
 	return div;
