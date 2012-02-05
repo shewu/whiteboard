@@ -1,20 +1,16 @@
 <?php
 if (isset($_POST["imgUploadSubmit"])) {
-	var_dump($_POST);
 	$iUURL = $_POST["imgURL"];
-	echo "hello, ".$iUURL." ".$_FILES['imgUpload']['name'];
 	if (strlen($iUURL) > 0) {
 		;
 	} else if (strlen($_FILES['imgUpload']['name']) > 0) {
 		if (move_uploaded_file($_FILES['imgUpload']['tmp_name'], "/tmp/".$_FILES['imgUpload']['name'])) {
-			echo "upload is good";
 			$data = file_get_contents('/tmp/'.$_FILES['imgUpload']['name']);
-			echo $data;
 
 			$pvars = array('image' => base64_encode($data), 'key' => 'ef01658e300dbcf7aa0ecdd18a3bed7c');
 			$timeout = 30;
 			$curl = curl_init();
-			echo $curl;
+			echo "curl = ".$curl."<br/>";
 
 			curl_setopt($curl, CURLOPT_URL, 'http://api.imgur.com/2/upload.xml');
 			curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
