@@ -2,7 +2,7 @@
 include('util/header.php');
 ?>
 
-Hello
+Hello, world!
 
 <?
 include('util/footer.php');
