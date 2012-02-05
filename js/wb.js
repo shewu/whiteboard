@@ -15,10 +15,9 @@ function resizeCanvas() {
 	return;
 }
 
-function createTextlet() {
-	var e = window.event;
+function createTextlet(e) {
 	if (!e) {
-		console.log("e is null");
+		e = window.event;
 	}
 	var posx = 0, posy = 0;
 	if (e.pageX || e.pageY) {

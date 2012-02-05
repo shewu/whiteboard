@@ -40,7 +40,7 @@ echo "viewing whiteboard $name";
 ?>
 </header>
 
-<div id=canvas onclick="createTextlet()">
+<div id=canvas onclick="createTextlet(event)">
 </div>
 
 <?
