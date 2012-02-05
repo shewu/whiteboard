@@ -31,6 +31,10 @@ function createTextlet(e) {
 	$textarea.blur(function() {
 		var text = $(this).html();
 		var div = $("<div>");
+		div.blur(function() {
+			var content = $(this).html();
+			var ta = $("<textarea/>");
+		})
 		div.val(text);
 		$(this).replaceWith(div);
 	});
