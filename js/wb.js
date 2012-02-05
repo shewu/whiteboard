@@ -316,6 +316,7 @@ function objectMousedownFn(event) {
 	dragObjectBaseX = $(this).position().left;
 	dragObjectBaseY = $(this).position().top;
 	dragObject = $(this);
+	isMouseDown = true;
 	getObjFromDiv($(this)).currentlyBeingEdited = true;
 }
 
