@@ -33,7 +33,7 @@ function textareaBlurFn() {
 }
 
 function textareaClickFn(event) {
-	event.stopPropagation();
+//	event.stopPropagation();
 }
 
 function divClickFn(event) {
