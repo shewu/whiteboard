@@ -362,7 +362,7 @@ $(document).ready(function() {
 
 function textMenuHandler(e) {
 	e.stopPropagation();
-	alert('text');
+	createTextlet(e);
 	return false;
 }
 
