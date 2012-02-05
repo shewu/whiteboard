@@ -367,7 +367,7 @@ function imageMenuHandler(e) {
 	overlay = $("<div>");
 	overlay.addClass("overlay");
 	overlay.text('hello');
-	$(this).append(overlay);
+	$('body').append(overlay);
 	return false;
 }
 
