@@ -184,6 +184,9 @@ function sendDeleteUpdate(obj) {
 headerHeight = 16;
 footerHeight = 12;
 
+posx = -1;
+posy = -1;
+
 function resizeCapsule() {
 	var screenViewportHeight = document.documentElement.clientHeight;
 	document.getElementById('capsule').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
@@ -356,6 +359,18 @@ function textMenuHandler(e) {
 
 function imageMenuHandler(e) {
 	e.stopPropagation();
+	// we need to cache the mouse coordinates before anything
+	if (!e) {
+		e = window.event;
+	}
+	var posx = 0, posy = 0;
+	if (e.pageX || e.pageY) {
+		posx = e.pageX;
+		posy = e.pageY;
+	} else if (e.clientX || e.clientY) {
+		posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+	}
 	$('#vmenu').css('display', 'none');
 	$('.overlayLightbox').css('display', 'block');
 	return false;
@@ -378,12 +393,19 @@ function processImgFileUpload(file) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'http://api.imgur.com/2/upload.json');
 	xhr.onload = function() {
-		JSON.parse(xhr.responseText).upload.links.imgur_page;
+		// here is the response from the server
+		var rsp = JSON.parse(xhr.responseText).upload.links.imgur_page;
+		img = $('<img/>');
+		img.attr('src', rsp)
+		imglet = $("<div>");
+		imglet.addClass('textlet');
+		imglet.append(img);
+		imglet.css('left', posx);
+		imglet.css('top', posy);
+		$('.canvas').append(imglet);
 	}
 
 	xhr.send(fd);
-	var serverResponse = xhr.responseText;
-	alert(serverResponse);
 }
 
 function processImgUpload() {
