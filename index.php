@@ -7,6 +7,7 @@ include('util/header.php');
 Whiteboard
 </header>
 
+<div id=capsule>
 <div>
 <?
 $query = 'SELECT * FROM whiteboards';
@@ -34,6 +35,7 @@ mysql_free_result($whiteboards);
 <input type="text" name="whiteboard_name" />
 <input type="submit" value="Make whiteboard!" />
 </form>
+</div>
 </div>
 
 <?
