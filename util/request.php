@@ -1,8 +1,6 @@
 <?php
 require_once("mysql.php");
 
-echo $_GET["action"];
-
 switch($_GET["action"]) {
 	case "get_updates":
 		echo get_updates();
@@ -18,6 +16,9 @@ switch($_GET["action"]) {
 function get_updates() {
 	$whiteboard_id = $_GET["whiteboard_id"];
 	$connection_id = $_GET["connection_id"];
+	if(!$whiteboard_id || !$connection_id) {
+		return NULL;
+	}
 	$ans = "[ ";
 	$old_timestamp = update_user_timestamp($connection_id);
 	$query = "SELECT * FROM object_updates JOIN objects ON object_updates.object_id = objects.id 
@@ -36,7 +37,6 @@ function get_updates() {
 
 function get_new_connection() {
 	$query = "INSERT INTO user_connections VALUES ( NULL, 0 )";
-	echo $query;
 	mysql_query($query);
 	return mysql_insert_id();
 }
