@@ -187,7 +187,7 @@ function textareaBlurFn() {
 	div.css('left', x);
 	div.css('top', y);
 	div.css('white-space', 'pre');
-	div.attr('attr', $(this).attr);
+	div.attr('title', $(this).attr('title'));
 	div.click(divClickFn);
 	div.mousedown(objectMousedownFn);
 	div.text(text);
