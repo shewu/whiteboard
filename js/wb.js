@@ -126,7 +126,7 @@ function sendUpdate(obj, value, x, y) {
 		data += "&position_x" + x;
 		data += "&position_y" + y;
 		data += "&" + get_id_string;
-		s.ajax({
+		$.ajax({
 			url: URL,
 			data: data
 		});
