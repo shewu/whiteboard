@@ -1,8 +1,8 @@
 <?php
-if (isset($_GET["imgUploadSubmit"])) {
-	$iUURL = $_GET["imgURL"];
-	$iUFile = $_GET["imgUpload"];
-	var_dump($_GET);
+if (isset($_POST["imgUploadSubmit"])) {
+	$iUURL = $_POST["imgURL"];
+	$iUFile = $_POST["imgUpload"];
+	var_dump($_POST);
 	var_dump($_FILES);
 	if (strlen($iUURL) > 0) {
 		;
