@@ -6,51 +6,20 @@
 <script src="js/jq.js"></script>
 <script src="js/wb.js"></script>
 <script>
+$(document).bind('contextmenu', function(e) {
+	$('#vmenu').css({
+		top: e.pageY+'px',
+		left: e.pageX+'px'
+	}).show();
+	return false;
+});
+
 $(document).ready(function() {
-	$('#canvas').bind('contextmenu', function(e) {
-		var $cmenu = $(this).next();
-		console.log('hi');
-		$('<div class=overlay></div>').css({
-			left: '0px',
-			top: '0px',
-			position: 'absolute',
-			width: '100%',
-			height: '100%',
-			zIndex: '100'
-		}).click(function() {
-			$(this).remove();
-			$cmenu.hide();
-		}).bind('contextmenu', function() {
-			return false;
-		}).appendTo(document.body);
-		console.log('hi');
-		$(this).next().css({
-			left: e.pageX,
-			top: e.pageY,
-			zIndex: '101'
-		}).show();
-		//return false;
+	$('#vmenu').click(function() {
+		$('#vmenu').hide();
 	});
-	$('#vmenu .firstLi').live('click', function() {
-		if ($(this).children().size() == 1) {
-			$('#vmenu').hide();
-			$('.overlay').hide();
-		}
-	});
-	$('.firstLi').hover(function() {
-		$(this).css({
-			backgroundColor: '#E0EDFE',
-			cursor: 'pointer'
-		});
-		if ($(this).children().size() > 0) 
-			$(this).find('.innerLi').show();
-		$(this).css({
-			cursor: 'default'
-		});
-	},
-	function() {
-		$(this).css('background-color', '#fff');
-		$(this).find('.innerLi').hide();
+	$(document).click(function() {
+		$('#vmenu').hide();
 	});
 });
 </script>
