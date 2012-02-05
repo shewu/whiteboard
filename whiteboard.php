@@ -7,7 +7,8 @@ if (isset($_GET["imgUploadSubmit"])) {
 	if (strlen($iUURL) > 0) {
 		;
 	} else if (strlen($iUFile) > 0) {
-		var_dump($_FILES["imgUpload"]);
+		echo "uploaded file<br/>";
+		print_r($_FILES["imgUpload"]);
 	}
 }
 
