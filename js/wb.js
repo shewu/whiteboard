@@ -27,6 +27,6 @@ function createTextlet() {
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	console.log("relX = " + posx + " relY = " + posy);
-	$('canvas').append('<div class=textlet style="margin-top:'+relY+';margin-left:'+relX+';">Hello</div>');
+	$('canvas').append('<div class=textlet style="margin-top:'+posy+';margin-left:'+posx+';">Hello</div>');
 }
 
