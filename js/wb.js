@@ -27,7 +27,7 @@ objects = new Array();
 
 // AJAX - keep updated with the server using jquery AJAX
 
-URL = "girlproblems.xvm.mit.edu/whiteboard/util/request.php";
+URL = "util/request.php";
 
 function createConnection() {
 	console.log("testing console.log");
