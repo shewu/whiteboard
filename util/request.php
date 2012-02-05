@@ -1,6 +1,8 @@
 <?php
 require_once("mysql.php");
 
+echo $_GET["action"];
+
 switch($_GET["action"]) {
 	case "get_updates":
 		echo get_updates();
