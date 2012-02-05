@@ -24,7 +24,9 @@ $(document).ready(function() {
 		$('[name=imgRadio]').filter('[value=url]').prop("checked",true);
 	});
 	$('[name=imgRadio]').filter('[value=file]').click(function() {
-		$('#imgUploadFile').click();
+		var evt = document.createEvent("MouseEvents");
+		evt.initEvent("click", true, false);
+		$('#imgUploadFile').dispatchEvent(evt);
 	});
 	$('[name=imgRadio]').filter('[value=url]').click(function() {
 		$('#imgUploadURL').focus();
