@@ -48,7 +48,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <body onload=resizeCanvas() onresize=resizeCanvas()>
 
 <header style="position:fixed">
-<a href=/whiteboard/>Whiteboard</a> &gt; <? echo $name; ?> <em style="flush:right">by Brian Hamrick, Travis Hance, Sherry Wu</em>
+<a href=/whiteboard/>Whiteboard</a> &gt; <? echo $name; ?> <em style="float:right">by Brian Hamrick, Travis Hance, Sherry Wu</em>
 </header>
 
 <div id=vmenu class=vmenu>
