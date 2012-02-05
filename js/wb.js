@@ -7,7 +7,8 @@ function Obj(id, type) {
 
 	// deletes the div from view
 	this.remove = function() {
-		this.div.remove();
+		if(this.div != null)
+			this.div.remove();
 	};
 
 	// updates the div
