@@ -14,7 +14,7 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
-		if(this.currentlyBeingEditted || this.div == dragObject)
+		if(this.currentlyBeingEditted || (this.div != null && this.div == dragObject))
 			return;
 		this.remove();
 		switch(this.type) {
