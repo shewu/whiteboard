@@ -1,7 +1,12 @@
 <?
 include('util/header.php');
 include('util/mysql.php');
+?>
 
+<body onload="resizeCanvas()" onresize="resizeCanvas()">
+
+<header>
+<?
 function get_field($key) {
 	if($_GET[$key])
 		return $_GET[$key];
@@ -31,8 +36,7 @@ if(get_field('create') == 'yes') {
 echo "viewing whiteboard $name";
 
 ?>
-
-<body onload="resizeCanvas()" onresize="resizeCanvas()">
+</header>
 
 <div id=canvas>
 </div>
