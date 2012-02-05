@@ -23,5 +23,11 @@ $(document).ready(function() {
 	$('#imgUploadURL').focus(function() {
 		$('[name=imgRadio]').filter('[value=url]').prop("checked",true);
 	});
+	$('[name=imgRadio]').filter('[value=file]').click(function() {
+		$('#imgUploadFile').focus();
+	});
+	$('[name=imgRadio]').filter('[value=url]').click(function() {
+		$('#imgUploadURL').focus();
+	});
 	menuEvent = null;
 });
