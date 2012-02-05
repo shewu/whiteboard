@@ -23,13 +23,11 @@ function Obj(id, type) {
 		}
 	};
 }
-var objects = new Array();
+objects = new Array();
 
 // AJAX - keep updated with the server using jquery AJAX
 
-var URL = "girlproblems.xvm.mit.edu/whiteboard/util/request.php";
-var connection_id;
-var get_id_string;
+URL = "girlproblems.xvm.mit.edu/whiteboard/util/request.php";
 
 function createConnection() {
 	$.ajax({
