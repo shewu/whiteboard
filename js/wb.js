@@ -444,6 +444,7 @@ function imageMenuHandler(e) {
 function hamburgerMenuHandler(e) {
 	e.stopPropagation();
 	$('#vmenu').css('display', 'none');
+	window.open("http://nyan.cat/");
 	return false;
 }
 
