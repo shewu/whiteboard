@@ -175,7 +175,7 @@ function sendDeleteUpdate(obj) {
 	data += "&" + get_id_string;
 	$.ajax({
 		url: URL,
-		data: data
+		data: data,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success")
 				retrieveAllUpdates(true);
