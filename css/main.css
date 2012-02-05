@@ -35,9 +35,9 @@ footer {
 	background: #fff;
 	display: none;
 	font-size: 0.75em;
-	-moz-box-shadow: 10px 10px 10px #ccc;
-	-webkit-box-shadow: 10px 10px 10px #ccc;
-	box-shadow: 10px 10px 10px #ccc;
+	-moz-box-shadow: 5px 5px 10px #ccc;
+	-webkit-box-shadow: 5px 5px 10px #ccc;
+	box-shadow: 5px 5px 10px #ccc;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px
 	border-radius: 5px;
