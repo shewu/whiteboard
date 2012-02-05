@@ -378,7 +378,6 @@ function imageMenuHandler(e) {
 function hamburgerMenuHandler(e) {
 	e.stopPropagation();
 	$('#vmenu').css('display', 'none');
-	alert('hamburger!');
 	return false;
 }
 
@@ -395,8 +394,6 @@ function processImgFileUpload(file) {
 		// here is the response from the server
 		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
-		alert(rsp);
-		alert(posx + " " + posy);
 		img = $('<img/>');
 		img.attr('src', rsp)
 		imglet = $("<div>");
@@ -416,7 +413,6 @@ function processImgUpload() {
 	if (imgURL.length > 0) {
 		;
 	} else {
-		alert("nothing selected to upload");
 	}
 }
 
