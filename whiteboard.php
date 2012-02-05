@@ -20,9 +20,9 @@ if(get_field('create') == 'yes') {
 	if($name == '')
 		die('no name');
 	mysql_query("INSERT INTO whiteboards (name) VALUES ('$name')") or die('could not insert');
-	$id = mysql_insert_id();
+	$whiteboard_id = mysql_insert_id();
 } else {
-	$id = intval(get_field('whiteboard_id'));
+	$whiteboard_id = intval(get_field('whiteboard_id'));
 	$result = mysql_query("SELECT name FROM whiteboards WHERE id=$whiteboard_id") or die('select query failed');
 	$row = mysql_fetch_array($result, MYSQL_ASSOC);
 	if($row) {
