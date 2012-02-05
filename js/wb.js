@@ -25,7 +25,7 @@ function createTextlet() {
 		posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
-	var $textarea = "<div rows=2 cols=20 class=textlet style='top:"+posy+"px;left:"+posx+"px' onblur='this.contentEditable=false' onclick='this.contentEditable=true'></div>";
+	var $textarea = "<div rows=2 cols=20 class=textlet style='top:"+posy+"px;left:"+posx+"px' onblur='this.contentEditable=false' onclick='this.contentEditable=true' onload='this.contentEditable=true'></div>";
 	$('#canvas').append($textarea);
 }
 
