@@ -432,8 +432,7 @@ function processImgFileUpload(file) {
 function processImgUpload() {
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
-	alert($('input[name=imgRadio]:checked'));
-	switch ($('input[name=imgRadio]:checked')) {
+	switch ($('input[name=imgRadio]:checked', '#imgUploadForm').val()) {
 		case "file":
 			if (imgFile) {
 				processImgFileUpload(imgFile);
@@ -448,15 +447,6 @@ function processImgUpload() {
 			break;
 		default:
 			break;
-	}
-	if (imgURL.length > 0) {
-		// we need to do some validation
-		//createImagelet(imgURL);
-		sendUpdateCreate("image", imgURL, posx, posy, null);
-	} else if (imgFile) {
-		processImgFileUpload(imgFile);
-	} else {
-		alert("nothing to upload");
 	}
 }
 
