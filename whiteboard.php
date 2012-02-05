@@ -24,6 +24,7 @@ if(get_field('create') == 'yes') {
 	mysql_query("INSERT INTO whiteboards (name) VALUES ('" . mysql_real_escape_string($name) . "')") or die('could not insert');
 	$whiteboard_id = mysql_insert_id();
 } else {
+	$whiteboardid = get_field('whiteboard_id');
 	$result = mysql_query("SELECT name FROM whiteboards WHERE id=$whiteboard_id") or die('select query failed');
 	$row = mysql_fetch_array($result, MYSQL_ASSOC);
 	if($row) {
