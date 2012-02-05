@@ -20,3 +20,7 @@ footer {
 	height: 10px;
 }
 
+#viewport {
+	overflow: none;
+}
+
