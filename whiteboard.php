@@ -51,10 +51,14 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <a href=/whiteboard/>Home</a> - <? echo $name; ?>
 </header>
 
-<div id=vmenu>
+<div id=vmenu class=vmenu>
 <div class=firstLi onclick="textMenuHandler(event)">Text</div>
 <div class=firstLi onclick="imageMenuHandler(event)">Image</div>
 <div class=firstLi onclick="hamburgerMenuHandler(event)">Hamburger</div>
+</div>
+
+<div id=objmenu class=vmenu>
+<div class=firtLi onclick="objectDeleteMenuhandler(event)">Remove</div>
 </div>
 
 <div class=overlayLightbox>
