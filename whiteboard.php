@@ -112,7 +112,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <h3>Add an image</h3>
 <form enctype="multipart/form-data" id=imgUploadForm action="javascript:processImgUpload()" method=POST>
 <ul>
-<li>Upload an image: <input type=file id=imgUploadFile name=imgUpload onchange="upload(this.files[0])"/></li>
+<li>Upload an image: <input type=file id=imgUploadFile name=imgUpload onchange="processImgFileUpload(this.files[0])"/></li>
 <li>Paste from source: <input type=text id=imgUploadURL name=imgURL /></li>
 </ul>
 <hr/>
