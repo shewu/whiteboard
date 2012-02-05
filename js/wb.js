@@ -41,9 +41,12 @@ objs = { };
 URL = "util/request.php";
 
 function createConnection() {
+	var data = {};
+	data["action"] = "create_connection";
+	data["whiteboard_id"] = whiteboard_id;
 	$.ajax({
 		url: URL,
-		data: "action=create_connection&whiteboard_id=" + whiteboard_id,
+		data: data, //"action=create_connection&whiteboard_id=" + whiteboard_id,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
 				connection_id = parseInt(data);
