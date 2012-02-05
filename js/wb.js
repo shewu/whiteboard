@@ -1,18 +1,16 @@
+// keep these two values in sync with the css kthx
+var headerHeight = 16;
+var footerHeight = 12;
+
 function resizeCapsule() {
 	var screenViewportHeight = document.documentElement.clientHeight;
-	// keep these two values in sync with the css kthx
-	var headerHeight = 16;
-	var footerHeight = 12;
 	document.getElementById('capsule').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
 	return;
 }
 
-function resizeViewport() {
+function resizeCanvas() {
 	var screenViewportHeight = document.documentElement.clientHeight;
-	// keep these two values in sync with the css kthx
-	var headerHeight = 16;
-	var footerHeight = 12;
-	document.getElementById('viewport').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
+	document.getElementsByTagName('canvas').style.height = screenViewportHeight - footerHeight - 1 + 'px';
 	return;
 }
 
