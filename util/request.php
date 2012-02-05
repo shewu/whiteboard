@@ -50,6 +50,9 @@ function update_object() {
 
 function get_objects() {
 	$whiteboard_id = $_GET["whiteboard_id"];
+	if(!$whiteboard_id) {
+		return NULL;
+	}
 	$query = "SELECT * FROM objects WHERE whiteboard_id = $whiteboard_id";
 	$res = mysql_query($query);
 	$row = mysql_fetch_array($res, MYSQL_ASSOC);
