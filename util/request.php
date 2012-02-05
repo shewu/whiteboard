@@ -1,4 +1,6 @@
 <?php
+require_once("mysql.php");
+
 function get_updates() {
 	$whiteboard_id = $_GET["whiteboard_id"];
 	$connection_id = $_GET["connection_id"];
