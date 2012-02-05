@@ -76,7 +76,13 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 
 <div class=overlayLightbox>
 <div class=overlayContent>
-<a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a>
+<h3>Add an image</h3>
+<ol>
+<li>Upload an image</li>
+<li>Paste from source</li>
+</ol>
+<hr/>
+<div><a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
 </div>
 </div>
 
