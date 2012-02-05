@@ -74,10 +74,10 @@ function update_object() {
 
 	$row = get_object_latest_update($object_id);
 	if($_GET["value"]) {
-		$row["value"] = $_GET["value"];
+		$row["value"] = mysql_real_escape_string($_GET["value"]);
 	}
 	if($_GET["style"]) {
-		$row["style"] = $_GET["style"];
+		$row["style"] = mysql_real_escape_string($_GET["style"]);
 	}
 	if($_GET["position_x"]) {
 		$row["position_x"] = $_GET["position_x"];
@@ -149,12 +149,12 @@ function create_object() {
 
 	$row = Array();
 	if($_GET["value"]) {
-		$row["value"] = $_GET["value"];
+		$row["value"] = mysql_real_escape_string($_GET["value"]);
 	} else {
 		$row["value"] = "";
 	}
 	if($_GET["style"]) {
-		$row["style"] = $_GET["style"];
+		$row["style"] = mysql_real_escape_string($_GET["style"]);
 	} else {
 		$row["style"] = "";
 	}
