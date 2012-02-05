@@ -14,3 +14,12 @@ function resizeCanvas() {
 	return;
 }
 
+function createTextlet() {
+	var e = window.event;
+	var parentOffset = $(this).parent().offset();
+	var relX = e.pageX - parentOffset.left;
+	var relY = e.pageY - parentOffset.top;
+	console.log("relX = " + relX + " relY = " + relY);
+	$('canvas').append('<div class=textlet style="margin-top:'+relY+';margin-left:'+relX+';">Hello</div>');
+}
+

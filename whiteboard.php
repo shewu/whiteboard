@@ -30,7 +30,7 @@ echo "viewing whiteboard with id $id";
 ?>
 </header>
 
-<div id=canvas>
+<div id=canvas onclick="createTextlet()">
 </div>
 
 <?
