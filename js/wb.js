@@ -444,14 +444,5 @@ function processImgUpload() {
 		default:
 			break;
 	}
-	if (imgURL.length > 0) {
-		// we need to do some validation
-		//createImagelet(imgURL);
-		sendUpdateCreate("image", imgURL, posx, posy, null);
-	} else if (imgFile) {
-		processImgFileUpload(imgFile);
-	} else {
-		alert("nothing to upload");
-	}
 }
 
