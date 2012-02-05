@@ -36,3 +36,13 @@ $(document).ready(function() {
 	});
 	menuEvent = null;
 });
+
+$('#canvas').scroll(function() {
+	if ($('#canvas').height() - $(window).height() <= $(window).scrollTop() + 15) {
+		$('#canvas').css('height', $('#canvas').height + 100);
+	}
+	if ($('#canvas').width() - $(window).width() <= $(window).scrollLeft() + 15) {
+		$('#canvas').css('width', $('#canvas').width + 100);
+	}
+});
+

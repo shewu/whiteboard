@@ -2,6 +2,7 @@ body {
 	font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	border: 0;
 	margin: 0;
+	overflow: hidden;
 }
 
 article, header, footer {
@@ -21,6 +22,10 @@ footer {
 	text-align: center;
 	height: 12px;
 	z-index: 1100;
+}
+
+#canvas {
+	overflow: auto;
 }
 
 .textlet {
