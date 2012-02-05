@@ -22,7 +22,7 @@ function Obj(id, type) {
 		this.remove();
 		switch(this.type) {
 			case "textbox":
-				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y);
+				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, this.id);
 				break;
 
 			default:
@@ -174,8 +174,11 @@ function resizeCanvas() {
 }
 
 function getObjFromDiv(div) {
+	id = div.attr('title');
+	console.log("in getObjFromDiv, length = " + objs.length);
 	for(i in objs) {
-		if(objs[i].div == div) {
+		console.log("getObjFromDiv: object id = " + objs[i].id);
+		if(objs[i].id == id) {
 			return objs[i];
 		}
 	}
@@ -191,6 +194,7 @@ function textareaBlurFn() {
 	div.css('left', x);
 	div.css('top', y);
 	div.css('white-space', 'pre');
+	div.attr('attr', $(this).attr);
 	div.click(divClickFn);
 	div.mousedown(objectMousedownFn);
 	div.text(text);
@@ -215,6 +219,7 @@ function divClickFn(event) {
 		ta.addClass("textlet");
 		ta.css('left', $(this).position().left);
 		ta.css('top', $(this).position().top);
+		ta.attr('title', $(this).attr('title'));
 		ta.blur(textareaBlurFn);
 		ta.click(textareaClickFn);
 		ta.val(content);
@@ -255,7 +260,7 @@ function createTextlet(e) {
 }
 
 // creates a textlet unfocused
-function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y) {
+function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, objid) {
 	var div = $("<div>");
 	div.addClass("textlet");
 	div.css('left', pos_x);
@@ -263,6 +268,7 @@ function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y) {
 	div.css('white-space', 'pre');
 	div.click(divClickFn);
 	div.text(value);
+	div.attr('title', '' + objid);
 	$('#canvas').append(div);
 	return div;
 }
