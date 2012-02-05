@@ -120,7 +120,7 @@ function retrieveAllUpdates(onlyOnce) {
 	});
 }
 
-function sendUpdateCreate(value, type, x, y, div) {
+function sendUpdateCreate(type, value, x, y, div) {
 	data = "action=create_object";
 	data += "&type=" + type;
 	data += "&value=" + value;
@@ -150,7 +150,7 @@ function sendValueUpdate(obj, value) {
 		data: data,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
-				retrieveAllUpdates();
+				retrieveAllUpdates(true);
 			}
 		}
 	});
@@ -179,6 +179,10 @@ function sendDeleteUpdate(obj) {
 	$.ajax({
 		url: URL,
 		data: data
+		success: function(data, textStatus, jqXHR) {
+			if(textStatus == "success")
+				retrieveAllUpdates(true);
+		}
 	});
 	delete objs[obj.id];
 }
@@ -226,7 +230,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		if (obj == null) {
-			sendUpdateCreate(text, "textbox", x, y, $(this));
+			sendUpdateCreate("textbox", text, x, y, $(this));
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
@@ -392,6 +396,7 @@ function createImagelet(url, posx, posy) {
 	imglet.append(img);
 	imglet.css('left', posx);
 	imglet.css('top', posy);
+	imglet.mousedown(objectMousedownFn);
 	$('#canvas').append(imglet);
 	return imglet;
 }
@@ -410,7 +415,7 @@ function processImgFileUpload(file) {
 		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
 		createImagelet(rsp);
-		sendUpdateCreate(rsp, "image", posx, posy, null);
+		sendUpdateCreate("image", rsp, posx, posy, null);
 	}
 
 	xhr.send(fd);
@@ -419,10 +424,25 @@ function processImgFileUpload(file) {
 function processImgUpload() {
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
+	switch (document.forms['imgUploadForm'].elements['imgRadio']) {
+		case "file":
+			if (imgFile) {
+				processImgFileUpload(imgFile);
+			}
+			break;
+		case "url":
+			if (imgURL.length > 0) {
+				// we need to do some url validation!!
+				createImagelet(imgURL);
+			}
+			break;
+		default:
+			break;
+	}
 	if (imgURL.length > 0) {
 		// we need to do some validation
 		//createImagelet(imgURL);
-		sendUpdateCreate(imgURL, "image", posx, posy, null);
+		sendUpdateCreate("image", imgURL, posx, posy, null);
 	}
 	} else if (imgFile) {
 		processImgFileUpload(imgFile);
