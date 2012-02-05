@@ -176,6 +176,10 @@ function sendDeleteUpdate(obj) {
 	$.ajax({
 		url: URL,
 		data: data
+		success: function(data, textStatus, jqXHR) {
+			if(textStatus == "success")
+				retrieveAllUpdates(true);
+		}
 	});
 	delete objs[obj.id];
 }
