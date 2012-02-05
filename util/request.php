@@ -34,6 +34,7 @@ function get_updates() {
 
 function get_new_connection() {
 	$query = "INSERT INTO user_connections VALUES ( NULL, 0 )";
+	echo $query;
 	mysql_query($query);
 	return mysql_insert_id();
 }
