@@ -258,8 +258,8 @@ function escape_string_for_js(str) {
 }
 
 function update_to_string($row) {
-	$value_esc = escape_string_for_js($row[value]);
-	$style_esc = escape_string_for_js($row[style]);
+	$value_esc = escape_string_for_js($row["value"]);
+	$style_esc = escape_string_for_js($row["style"]);
 	$ans = "[ $row[object_id], '$value_esc', '$style_esc', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted] ]";
 	return $ans;
 }
