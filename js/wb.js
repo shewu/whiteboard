@@ -126,9 +126,10 @@ function sendUpdate(obj, value, x, y) {
 	data += "&" + get_id_string;
 	$.ajax({
 		url: URL,
-		data: data
+		data: data,
 		success: function(data, textStatus, jqXHR) {
-			retrieveAllUpdates();
+			if(textStatus == "success")
+				retrieveAllUpdates();
 		}
 	});
 }
@@ -141,9 +142,10 @@ function sendMoveUpdate(obj, x, y) {
 	data += "&" + get_id_string;
 	$.ajax({
 		url: URL,
-		data: data
+		data: data,
 		success: function(data, textStatus, jqXHR) {
-			retrieveAllUpdates();
+			if(textStatus == "success")
+				retrieveAllUpdates();
 		}
 	});
 }
