@@ -419,6 +419,8 @@ function processImgUpload() {
 		createImagelet(imgURL);
 	} else if (imgFile) {
 		processImgFileUpload(imgFile);
+	} else {
+		alert("nothing to upload");
 	}
 }
 
