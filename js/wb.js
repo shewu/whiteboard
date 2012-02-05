@@ -405,7 +405,7 @@ function processImgFileUpload(file) {
 		imglet.append(img);
 		imglet.css('left', posx);
 		imglet.css('top', posy);
-		$('.canvas').append(imglet);
+		$('#canvas').append(imglet);
 	}
 
 	xhr.send(fd);
