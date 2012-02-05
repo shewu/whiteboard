@@ -25,6 +25,7 @@ footer {
 	position: absolute;
 	background: black;
 	color: white;
-	display: inline-block;
+	display: inline;
+	padding: 5px;
 }
 

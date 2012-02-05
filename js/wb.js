@@ -17,16 +17,18 @@ function resizeCanvas() {
 
 function createTextlet() {
 	var e = window.event;
+	if (!e) {
+		console.log("e is null");
+	}
 	var posx = 0, posy = 0;
 	if (e.pageX || e.pageY) {
 		posx = e.pageX;
 		posy = e.pageY;
-	}
-	else if (e.clientX || e.clientY) {
+	} else if (e.clientX || e.clientY) {
 		posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
-	console.log("relX = " + posx + " relY = " + posy);
-	$('#canvas').append('<div class="textlet" style="top:'+posy+'px;left:'+posx+'px;">Hello</div>');
+	var $textarea = "<div class=textlet style='top:"+posy+"px;left:"+posx+"px' onblur='this.contentEditable=false' onclick='this.contentEditable=true' onload='this.contentEditable=true'></div>";
+	$('#canvas').append($textarea);
 }
 
