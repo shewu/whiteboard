@@ -341,7 +341,6 @@ $(document).ready(function() {
 		dragged = false;
 	})
 	.mouseup(function(e) {
-		console.log("hello, in mouseup: dragged = " + dragged + ", dragObject = " + dragObject);
 		isMouseDown = false;
 		if(dragged && dragObject != null) {
 			sendMoveUpdate(getObjFromDiv(dragObject), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY);
