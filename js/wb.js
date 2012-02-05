@@ -147,7 +147,7 @@ function sendValueUpdate(obj, value) {
 		data: data,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
-				retrieveAllUpdates();
+				retrieveAllUpdates(true);
 			}
 		}
 	});
