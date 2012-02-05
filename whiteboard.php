@@ -71,26 +71,8 @@ if(get_field('create') == 'yes') {
 <script src="js/jq.js"></script>
 <script src="js/wb.js"></script>
 <script src="js/fu.js"></script>
+<script src="js/vwb.js"></script>
 <script>
-$(document).bind('contextmenu', function(e) {
-	$('#vmenu').css({
-		top: (e.pageY-10)+'px',
-		left: (e.pageX-10)+'px'
-	}).show();
-	menuEvent = e;
-	return false;
-});
-
-$(document).ready(function() {
-	$('#vmenu').click(function() {
-		$('#vmenu').hide();
-	});
-	$(document).click(function() {
-		$('#vmenu').hide();
-	});
-	menuEvent = null;
-});
-
 whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </script>
 
