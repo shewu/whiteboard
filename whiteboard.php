@@ -1,6 +1,10 @@
 <?php
 include('util/mysql.php');
 
+if (isset($_GET["imgUploadSubmit"])) {
+	;
+}
+
 function get_field($key) {
 	if($_GET[$key])
 		return $_GET[$key];
@@ -88,6 +92,18 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </form>
 </div>
 </div>
+
+<script>
+$("form #imgUploadForm").submit(function() {
+	if ($("input #imgUploadURL").val().length() > 0 || $("input #imguploadFile").val().length() > 0) {
+		alert("You have uploaded something");
+		return true;
+	} else {
+		alert("Please enter a URL or upload a file!");
+		return false;
+	}
+});
+</script>
 
 <div id=canvas>
 </div>
