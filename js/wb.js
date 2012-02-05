@@ -212,7 +212,7 @@ function resizeCanvas() {
 }
 
 function getObjFromDiv(div) {
-	id = div.attr('title');
+	id = div.attr('objid');
 	for(i in objs) {
 		if(objs[i].id == id) {
 			return objs[i];
@@ -231,7 +231,7 @@ function textareaBlurFn() {
 	div.css('left', x);
 	div.css('top', y);
 	div.css('white-space', 'pre');
-	div.attr('title', $(this).attr('title'));
+	div.attr('objid', $(this).attr('objid'));
 	div.click(divClickFn);
 	div.mousedown(objectMousedownFn);
 	div.text(text);
@@ -264,7 +264,7 @@ function divClickFn(event) {
 		ta.addClass("textlet");
 		ta.css('left', $(this).position().left);
 		ta.css('top', $(this).position().top);
-		ta.attr('title', $(this).attr('title'));
+		ta.attr('objid', $(this).attr('objid'));
 		ta.blur(textareaBlurFn);
 		ta.click(textareaClickFn);
 		ta.val(content);
@@ -302,7 +302,7 @@ function createTextlet(e) {
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	var $textarea = $("<textarea class=textlet style='top:"+posy+"px;left:"+posx+"px'/>");
-	$textarea.attr('title','-1');
+	$textarea.attr('objid','-1');
 	$textarea.blur(textareaBlurFn);
 	$textarea.click(function(event) {
 		event.stopPropagation();
@@ -321,7 +321,7 @@ function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, objid) {
 	div.css('white-space', 'pre');
 	div.click(divClickFn);
 	div.text(value);
-	div.attr('title', '' + objid);
+	div.attr('objid', '' + objid);
 	div.mousedown(objectMousedownFn);
 	$('#canvas').append(div);
 	return div;
