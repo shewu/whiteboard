@@ -39,5 +39,6 @@ function createTextlet(e) {
 		$(this).replaceWith(div);
 	});
 	$('#canvas').append($textarea);
+	return false;
 }
 
