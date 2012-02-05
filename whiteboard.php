@@ -47,8 +47,6 @@ $(document).bind('contextmenu', function(e) {
 	return false;
 });
 
-alert('hi');
-
 $(document).ready(function() {
 	$('#vmenu').click(function() {
 		$('#vmenu').hide();
@@ -57,7 +55,7 @@ $(document).ready(function() {
 		$('#vmenu').hide();
 	});
 	whiteboard_id = <?php echo "$whiteboard_id"; ?>;
-	alert('' + whiteboard_id);
+	alert("Hi!");
 });
 </script>
 
