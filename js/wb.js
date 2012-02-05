@@ -123,11 +123,10 @@ function sendUpdate(obj, value, x, y) {
 		data = "action=create_object";
 		data += "&type=textbox";
 		data += "&value=" + value;
-		data += "&style=" + style;
 		data += "&position_x" + x;
 		data += "&position_y" + y;
 		data += "&" + get_id_string;
-		s.ajax({
+		$.ajax({
 			url: URL,
 			data: data
 		});
@@ -303,6 +302,7 @@ function createTextlet(e) {
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	var $textarea = $("<textarea class=textlet style='top:"+posy+"px;left:"+posx+"px'/>");
+	$textarea.attr('title','-1');
 	$textarea.blur(textareaBlurFn);
 	$textarea.click(function(event) {
 		event.stopPropagation();
