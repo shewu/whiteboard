@@ -54,8 +54,9 @@ $(document).ready(function() {
 	$(document).click(function() {
 		$('#vmenu').hide();
 	});
-	whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 });
+
+whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </script>
 
 </head>
