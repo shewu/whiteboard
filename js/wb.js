@@ -443,7 +443,6 @@ function processImgUpload() {
 		// we need to do some validation
 		//createImagelet(imgURL);
 		sendUpdateCreate("image", imgURL, posx, posy, null);
-	}
 	} else if (imgFile) {
 		processImgFileUpload(imgFile);
 	} else {
