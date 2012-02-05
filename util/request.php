@@ -14,6 +14,9 @@ switch($_GET["action"]) {
 	case "get_objects": // Get all object info
 		echo get_objects();
 		break;
+	case "get_all_latest_updates":
+		echo get_all_latest_updates();
+		break;
 }
 
 function get_updates() {
@@ -118,6 +121,26 @@ function update_user_timestamp($connection_id) {
 	} else {
 		return NULL;
 	}
+}
+
+function get_all_latest_updates() {
+	// To be used to initially load the whiteboard
+	$whiteboard_id = $_GET["whiteboard_id"];
+	if(!$whiteboard_id) {
+		return NULL;
+	}
+	$query = "SELECT * FROM objects WHERE whiteboard_id = $whiteboard_id";
+	$res = mysql_query($query);
+	$ans = "[ ";
+	$row = mysql_fetch_array($res, MYSQL_ASSOC);
+	if($row) {
+		$ans = $ans . update_to_string(get_object_latest_update($row["id"]));
+		while($row = mysql_fetch_array($res, MYSQL_ASSOC)) {
+			$ans = $ans . ", " . update_to_string(get_object_latest_update($row["id"]));
+		}
+	}
+	$ans = $ans . " ]";
+	return $ans;
 }
 
 function get_object_latest_update($object_id) {
