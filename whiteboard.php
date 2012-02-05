@@ -47,6 +47,8 @@ $(document).bind('contextmenu', function(e) {
 	return false;
 });
 
+alert('hi');
+
 $(document).ready(function() {
 	$('#vmenu').click(function() {
 		$('#vmenu').hide();
