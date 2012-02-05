@@ -33,7 +33,7 @@ function textareaBlurFn() {
 
 function divClickFn(event) {
 	event.stopPropagation();
-	var content = $(this).html();
+	var content = $(this).text();
 	var ta = $("<textarea />");
 	ta.addClass("textlet");
 	ta.css('left', $(this).position().left);
