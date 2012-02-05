@@ -38,6 +38,7 @@ if(get_field('create') == 'yes') {
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <script src="js/jq.js"></script>
 <script src="js/wb.js"></script>
+<script src="js/fu.js"></script>
 <script>
 $(document).bind('contextmenu', function(e) {
 	$('#vmenu').css({
@@ -77,10 +78,13 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <div class=overlayLightbox>
 <div class=overlayContent>
 <h3>Add an image</h3>
+<form>
 <ol>
-<li>Upload an image</li>
-<li>Paste from source</li>
+<li>Upload an image: <input type=file name=imgUpload size=1024 /></li>
+<li>Paste from source: <input type=text name=imgURL /></li>
 </ol>
+<input type=submit name=Submit />
+</form>
 <hr/>
 <div><a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
 </div>

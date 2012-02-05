@@ -23,8 +23,8 @@ footer {
 
 .textlet {
 	position: absolute;
-	background: black;
-	color: white;
+	border: 1px dashed black;
+	color: black;
 	display: inline;
 	padding: 5px;
 }
