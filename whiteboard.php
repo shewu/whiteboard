@@ -7,15 +7,14 @@ function get_field($key) {
 		return $_GET[$key];
 	if($_POST[$key])
 		return $_POST[$key];
-	return ""
+	return "";
 }
 
 if(get_field('create') == 'yes') {
-	$name = get_field('name')
+	$name = get_field('name');
 	if($name == '')
 		die('no name');
-	mysql_query("INSERT INTO whiteboards (name) VALUES ('$name')")
-		or die('could not insert');
+	mysql_query("INSERT INTO whiteboards (name) VALUES ('$name')") or die('could not insert');
 	$id = mysql_insert_id();
 } else {
 	$id = intval(get_field('whiteboard_id'));
