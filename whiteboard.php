@@ -15,7 +15,7 @@ function get_field($key) {
 	return "";
 }
 
-$whiteboardid = 0;
+$whiteboard_id = 0;
 $name = "";
 if(get_field('create') == 'yes') {
 	$name = get_field('whiteboard_name');
@@ -24,7 +24,7 @@ if(get_field('create') == 'yes') {
 	mysql_query("INSERT INTO whiteboards (name) VALUES ('" . mysql_real_escape_string($name) . "')") or die('could not insert');
 	$whiteboard_id = mysql_insert_id();
 } else {
-	$whiteboardid = get_field('whiteboard_id');
+	$whiteboard_id = get_field('whiteboard_id');
 	echo "whiteboardid=$whiteboard_id<br><br><br>";
 	$result = mysql_query("SELECT name FROM whiteboards WHERE id=$whiteboard_id") or die('select query failed');
 	$row = mysql_fetch_array($result, MYSQL_ASSOC);
