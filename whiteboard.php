@@ -110,7 +110,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <li>Paste from source: <input type=text id=imgUploadURL name=imgURL /></li>
 </ul>
 <hr/>
-<div><input type=submit name=imgUploadSubmit value=Submit /> or <a onclick="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
+<div><input type=submit name=imgUploadSubmit value=Submit /> or <input type=button onclick="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
 </form>
 </div>
 </div>
