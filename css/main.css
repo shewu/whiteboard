@@ -8,7 +8,12 @@ article, header, footer {
 	display: block;
 }
 
+header {
+	background: red;
+}
+
 footer {
+	background: blue;
 	font-size: x-small;
 	text-align: center;
 }
