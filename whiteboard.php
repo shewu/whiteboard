@@ -58,7 +58,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </div>
 
 <div id=objmenu class=vmenu>
-<div class=firtLi onclick="objectDeleteMenuhandler(event)">Remove</div>
+<div class=firstLi onclick="objectDeleteMenuhandler(event)">Remove</div>
 </div>
 
 <div class=overlayLightbox>

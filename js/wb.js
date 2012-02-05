@@ -32,6 +32,7 @@ function Obj(id, type) {
 			default:
 				break;
 		}
+		this.div.bind('contextmenu', objectContextmenuFn);
 	};
 }
 objs = { };
@@ -238,7 +239,6 @@ function textareaBlurFn() {
 	div.attr('objid', $(this).attr('objid'));
 	div.click(divClickFn);
 	div.mousedown(objectMousedownFn);
-	div.bind('contextmenu', objectContextmenuFn);
 	div.text(text);
 	if (text.length > 0) {
 		if (obj == null) {
@@ -342,8 +342,8 @@ function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, objid) {
 	div.text(value);
 	div.attr('objid', '' + objid);
 	div.mousedown(objectMousedownFn);
-	div.bind('contextmenu', objectContextmenuFn);
 	$('#canvas').append(div);
+	div.bind('contextmenu', objectContextmenuFn);
 	return div;
 }
 
@@ -429,8 +429,8 @@ function createImagelet(url, posx, posy, objid) {
 	imglet.css('top', posy);
 	imglet.attr('objid', '' + objid);
 	imglet.mousedown(objectMousedownFn);
-	imglet.bind('contextmenu', objectContextmenuFn);
 	$('#canvas').append(imglet);
+	imglet.bind('contextmenu', objectContextmenuFn);
 	return imglet;
 }
 
