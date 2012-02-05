@@ -118,34 +118,23 @@ function retrieveAllUpdates(onlyOnce) {
 	});
 }
 
-function sendUpdate(obj, value, x, y) {
-	if(obj == null) {
-		data = "action=create_object";
-		data += "&type=textbox";
-		data += "&value=" + value;
-		data += "&position_x=" + x;
-		data += "&position_y=" + y;
-		data += "&" + get_id_string;
-		$.ajax({
-			url: URL,
-			data: data
-		});
-	} else {
-		data = "action=update_object";
-		data += "&object_id=" + obj.id;
-		data += "&value=" + value;
-		data += "&position_x=" + x;
-		data += "&position_y=" + y;
-		data += "&" + get_id_string;
-		$.ajax({
-			url: URL,
-			data: data,
-			success: function(data, textStatus, jqXHR) {
-				if(textStatus == "success")
-					retrieveAllUpdates(true);
+function sendUpdateCreate(value, x, y, div) {
+	data = "action=create_object";
+	data += "&type=textbox";
+	data += "&value=" + value;
+	data += "&position_x=" + x;
+	data += "&position_y=" + y;
+	data += "&" + get_id_string;
+	$.ajax({
+		url: URL,
+		data: data
+		success: function(data, textStatus, jqXHR) {
+			if(textStatus == "success") {
+				div.remove();
+				retrieveAllUpdates(true);
 			}
-		});
-	}
+		}
+	});
 }
 
 function sendValueUpdate(obj, value) {
@@ -157,8 +146,9 @@ function sendValueUpdate(obj, value) {
 		url: URL,
 		data: data,
 		success: function(data, textStatus, jqXHR) {
-			if(textStatus == "success")
+			if(textStatus == "success") {
 				retrieveAllUpdates();
+			}
 		}
 	});
 }
@@ -237,8 +227,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		if (obj == null) {
-			$(this).remove();
-			sendUpdate(obj, text, x, y);
+			sendUpdateCreate(text, x, y, $(this));
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
