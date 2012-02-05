@@ -414,6 +414,21 @@ function processImgFileUpload(file) {
 function processImgUpload() {
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
+	switch (document.forms['imgUploadForm'].elements['imgRadio']) {
+		case "file":
+			if (imgFile) {
+				processImgFileUpload(imgFile);
+			}
+			break;
+		case "url":
+			if (imgURL.length > 0) {
+				// we need to do some url validation!!
+				createImagelet(imgURL);
+			}
+			break;
+		default:
+			break;
+	}
 	if (imgURL.length > 0) {
 		// we need to do some validation
 		createImagelet(imgURL);
