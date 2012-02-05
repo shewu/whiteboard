@@ -45,7 +45,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 
 </head>
 
-<body>
+<body onload=resizeCanvas() onresize=resizeCanvas()>
 
 <header style="position:fixed">
 <a href=/whiteboard/>Home</a> - <? echo $name; ?>

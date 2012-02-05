@@ -228,6 +228,19 @@ footerHeight = 12;
 posx = -1;
 posy = -1;
 
+function resizeCapsule() {
+    var screenViewportHeight = document.documentElement.clientHeight;
+    document.getElementById('capsule').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
+    return;
+}
+
+function resizeCanvas() {
+    var screenViewportHeight = document.documentElement.clientHeight;
+    document.getElementById('canvas').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
+    return;
+}
+
+
 function getObjFromDiv(div) {
 	id = div.attr('objid');
 	if(objs[id])
