@@ -23,6 +23,7 @@ function textareaBlurFn() {
 	div.css('top', $(this).position().top);
 	div.css('white-space', 'pre');
 	div.click(divClickFn);
+	div.mousedown(objectMousedownFn);
 	div.text(text);
 	if (text.length > 0) {
 		$(this).replaceWith(div);
@@ -42,6 +43,14 @@ function divClickFn(event) {
 	ta.val(content);
 	$(this).replaceWith(ta);
 	ta.focus();
+}
+
+function objectMousedownFn(event) {
+	dragBaseX = event.pageX;
+	dragBaseY = event.pageY;
+	dragObjectBaseX = $(this).position().left;
+	dragObjectBaseY = $(this).position().top;
+	dragObject = $(this);
 }
 
 function createTextlet(e) {
@@ -66,3 +75,28 @@ function createTextlet(e) {
 	return false;
 }
 
+$(document).ready(function() {
+	isMouseDown = false;
+	dragObject = null;
+	dragBaseX = 0;
+	dragBaseY = 0;
+	dragObjectBaseX = 0;
+	dragObjectBaseY = 0;
+
+	$('body').mousedown(function() {
+		isMouseDown = true;
+	})
+	.mouseup(function() {
+		isMouseDown = false;
+		// send server an update on position
+		dragObject = null;
+	})
+	.mousemove(function(event) {
+		if(isMouseDown && dragObject != null) {
+			var curX = event.pageX;
+			var curY = event.pageY;
+			dragObject.css('left', dragObjectBaseX + curX - dragBaseX);
+			dragObject.css('top', dragObjectBaseY + curY - dragBaseY);
+		}
+	});
+});
