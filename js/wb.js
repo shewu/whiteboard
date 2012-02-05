@@ -34,15 +34,17 @@ function textareaBlurFn() {
 
 function divClickFn(event) {
 	event.stopPropagation();
-	var content = $(this).text();
-	var ta = $("<textarea />");
-	ta.addClass("textlet");
-	ta.css('left', $(this).position().left);
-	ta.css('top', $(this).position().top);
-	ta.blur(textareaBlurFn);
-	ta.val(content);
-	$(this).replaceWith(ta);
-	ta.focus();
+	if(!dragged) {
+		var content = $(this).text();
+		var ta = $("<textarea />");
+		ta.addClass("textlet");
+		ta.css('left', $(this).position().left);
+		ta.css('top', $(this).position().top);
+		ta.blur(textareaBlurFn);
+		ta.val(content);
+		$(this).replaceWith(ta);
+		ta.focus();
+	}
 }
 
 function objectMousedownFn(event) {
@@ -82,9 +84,11 @@ $(document).ready(function() {
 	dragBaseY = 0;
 	dragObjectBaseX = 0;
 	dragObjectBaseY = 0;
+	dragged = false;
 
 	$('body').mousedown(function() {
 		isMouseDown = true;
+		dragged = false;
 	})
 	.mouseup(function() {
 		isMouseDown = false;
@@ -97,6 +101,7 @@ $(document).ready(function() {
 			var curY = event.pageY;
 			dragObject.css('left', dragObjectBaseX + curX - dragBaseX);
 			dragObject.css('top', dragObjectBaseY + curY - dragBaseY);
+			dragged = true;
 		}
 	});
 });
