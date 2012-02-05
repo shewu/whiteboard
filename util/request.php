@@ -14,6 +14,12 @@ switch($_GET["action"]) {
 	case "get_objects": // Get all object info
 		echo get_objects();
 		break;
+	case "get_all_latest_updates": // For each object, get the last update of it
+		echo get_all_latest_updates();
+		break;
+	case "create_object": // Create an object and return the ID
+		echo create_object();
+		break;
 }
 
 function get_updates() {
@@ -83,6 +89,55 @@ function update_object() {
 	mysql_query($query);
 }
 
+function create_object() {
+	$whiteboard_id = $_GET["whiteboard_id"];
+	if(!$whiteboard_id) {
+		return NULL;
+	}
+	$type = $_GET["type"];
+	if(!$type) {
+		return NULL;
+	}
+
+	$row = [];
+	if($_GET["value"]) {
+		$row["value"] = $_GET["value"];
+	} else {
+		$row["value"] = "";
+	}
+	if($_GET["style"]) {
+		$row["style"] = $_GET["style"];
+	} else {
+		$row["style"] = "";
+	}
+	if($_GET["position_x"]) {
+		$row["position_x"] = $_GET["position_x"];
+	} else {
+		$row["position_x"] = 0;
+	}
+	if($_GET["position_y"]) {
+		$row["position_y"] = $_GET["position_y"];
+	} else {
+		$row["position_y"] = 0;
+	}
+	if($_GET["size_x"]) {
+		$row["size_x"] = $_GET["size_x"];
+	} else {
+		$row["size_x"] = 0;
+	}
+	if($_GET["size_y"]) {
+		$row["size_y"] = $_GET["size_y"];
+	} else {
+		$row["size_y"] = 0;
+	}
+	$query = "INSERT INTO objects VALUES ( NULL, $whiteboard_id, '$type' )";
+	mysql_query($query);
+	$object_id = mysql_insert_id();
+	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], NULL )";
+	mysql_query($query);
+	return $object_id;
+}
+
 function get_objects() {
 	$whiteboard_id = $_GET["whiteboard_id"];
 	if(!$whiteboard_id) {
@@ -118,6 +173,26 @@ function update_user_timestamp($connection_id) {
 	} else {
 		return NULL;
 	}
+}
+
+function get_all_latest_updates() {
+	// To be used to initially load the whiteboard
+	$whiteboard_id = $_GET["whiteboard_id"];
+	if(!$whiteboard_id) {
+		return NULL;
+	}
+	$query = "SELECT * FROM objects WHERE whiteboard_id = $whiteboard_id";
+	$res = mysql_query($query);
+	$ans = "[ ";
+	$row = mysql_fetch_array($res, MYSQL_ASSOC);
+	if($row) {
+		$ans = $ans . update_to_string(get_object_latest_update($row["id"]));
+		while($row = mysql_fetch_array($res, MYSQL_ASSOC)) {
+			$ans = $ans . ", " . update_to_string(get_object_latest_update($row["id"]));
+		}
+	}
+	$ans = $ans . " ]";
+	return $ans;
 }
 
 function get_object_latest_update($object_id) {
