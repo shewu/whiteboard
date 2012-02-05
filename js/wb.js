@@ -281,7 +281,8 @@ $(document).ready(function() {
 	})
 	.mouseup(function() {
 		isMouseDown = false;
-		sendUpdate(getObjFromDiv(dragObject, dragObject.text(), dragObject.position().left, dragObject.position().top));
+		if(dragged && dragObject != null)
+			sendUpdate(getObjFromDiv(dragObject, dragObject.text(), dragObject.position().left, dragObject.position().top));
 		dragObject = null;
 	})
 	.mousemove(function(event) {
