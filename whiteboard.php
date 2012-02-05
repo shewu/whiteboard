@@ -83,10 +83,9 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <li>Upload an image: <input type=file name=imgUpload size=1024 /></li>
 <li>Paste from source: <input type=text name=imgURL /></li>
 </ul>
-<input type=submit name=Submit />
-</form>
 <hr/>
-<div><a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
+<div><input type=submit name=Submit /> or <a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
+</form>
 </div>
 </div>
 
