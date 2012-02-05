@@ -4,7 +4,7 @@ function Obj(id, type) {
 	this.id = id;
 	this.type = type;
 	this.div = null;
-	this.currentlyBeingEditted = false;
+	this.currentlyBeingEdited = false;
 
 	// deletes the div from view
 	this.remove = function() {
@@ -14,7 +14,7 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
-		if(this.currentlyBeingEditted || (this.div != null && this.div == dragObject))
+		if(this.currentlyBeingEdited)
 			return;
 		this.remove();
 		switch(this.type) {
@@ -209,7 +209,7 @@ function textareaBlurFn() {
 		$(this).replaceWith(div);
 		sendUpdate(obj, text, x, y);
 		obj.div = div;
-		obj.currentlyBeingEditted = false;
+		obj.currentlyBeingEdited = false;
 	} else {
 		$(this).remove();
 		sendDeleteUpdate(obj);
@@ -235,7 +235,7 @@ function divClickFn(event) {
 		ta.val(content);
 		$(this).replaceWith(ta);
 		ta.focus();
-		obj.currentlyBeingEditted = true;
+		obj.currentlyBeingEdited = true;
 	}
 }
 
@@ -245,6 +245,7 @@ function objectMousedownFn(event) {
 	dragObjectBaseX = $(this).position().left;
 	dragObjectBaseY = $(this).position().top;
 	dragObject = $(this);
+	getObjFromDiv($(this)).currentlyBeingEdited = true;
 }
 
 // creates a textlet focused
@@ -300,8 +301,12 @@ $(document).ready(function() {
 	})
 	.mouseup(function(e) {
 		isMouseDown = false;
-		if(dragged && dragObject != null)
+		if(dragged && dragObject != null) {
 			sendMoveUpdate(getObjFromDiv(dragObject), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY);
+		}
+		if(dragObject != null) {
+			getObjFromDiv(dragObject).currentlyBeingEdited = false;
+		}
 		dragObject = null;
 	})
 	.mousemove(function(event) {
