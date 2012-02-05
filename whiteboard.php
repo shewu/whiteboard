@@ -27,7 +27,7 @@ $(document).ready(function() {
 			top: e.pageY,
 			zIndex: '101'
 		}).show();
-		return false;
+		//return false;
 	});
 	$('#vmenu .firstLi').live('click', function() {
 		if ($(this).children().size() == 1) {
