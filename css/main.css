@@ -10,20 +10,22 @@ article, header, footer {
 }
 
 header {
-	background: red;
+	background: #DDD;
 	height: 16px;
+	z-index: 1100;
 }
 
 footer {
-	background: blue;
+	background: #DDD;
 	font-size: x-small;
 	text-align: center;
 	height: 12px;
+	z-index: 1100;
 }
 
 .textlet {
 	position: absolute;
-	border: 1px dashed black;
+	border: 1px dashed #666;
 	color: black;
 	display: inline;
 	padding: 5px;
