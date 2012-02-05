@@ -1,5 +1,31 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>Meatboard</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script src="js/jq.js"></script>
+<script src="js/wb.js"></script>
+<script>
+$(document).bind('contextmenu', function(e) {
+	$('#vmenu').css({
+		top: e.pageY+'px',
+		left: e.pageX+'px'
+	}).show();
+	return false;
+});
+
+$(document).ready(function() {
+	$('#vmenu').click(function() {
+		$('#vmenu').hide();
+	});
+	$(document).click(function() {
+		$('#vmenu').hide();
+	});
+});
+</script>
+
+</head>
 <?
-include('util/header.php');
 include('util/mysql.php');
 ?>
 
@@ -42,7 +68,14 @@ echo "</script>
 ?>
 </header>
 
-<div id=canvas onclick="createTextlet(event)">
+<div id=vmenu>
+<div class=firstLi>Text</div>
+<div class=firstLi>Image</div>
+<div class=firstLi>Hamburger</div>
+</div>
+
+
+<div id=canvas>
 </div>
 
 <?

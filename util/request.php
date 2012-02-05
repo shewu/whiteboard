@@ -23,6 +23,9 @@ switch($_GET["action"]) {
 	case "delete_object":
 		delete_object();
 		break;
+	case "get_object_type":
+		echo get_object_type();
+		break;
 }
 
 function get_updates() {
@@ -90,6 +93,26 @@ function update_object() {
 	}
 	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted], NULL )";
 	mysql_query($query);
+}
+
+function get_object_type() {
+	$whiteboard_id = $_GET["whiteboard_id"];
+	if(!$whiteboard_id) {
+		return NULL;
+	}
+	$object_id = $_GET["object_id"];
+	if(!$object_id) {
+		return NULL;
+	}
+	// Verify that this object exists
+	$query = "SELECT * FROM objects WHERE id = $object_id AND whiteboard_id = $whiteboard_id";
+	$res = mysql_query($query);
+	$row = mysql_fetch_array($res);
+	if(!$row) {
+		return NULL;
+	} else {
+		return $row["type"];
+	}
 }
 
 function delete_object() {

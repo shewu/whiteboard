@@ -169,6 +169,7 @@ function textareaBlurFn() {
 	div.css('top', y);
 	div.css('white-space', 'pre');
 	div.click(divClickFn);
+	div.mousedown(objectMousedownFn);
 	div.text(text);
 	if (text.length > 0) {
 		$(this).replaceWith(div);
@@ -179,17 +180,32 @@ function textareaBlurFn() {
 	}
 }
 
+function textareaClickFn(event) {
+	event.stopPropagation();
+}
+
 function divClickFn(event) {
 	event.stopPropagation();
-	var content = $(this).text();
-	var ta = $("<textarea />");
-	ta.addClass("textlet");
-	ta.css('left', $(this).position().left);
-	ta.css('top', $(this).position().top);
-	ta.blur(textareaBlurFn);
-	ta.val(content);
-	$(this).replaceWith(ta);
-	ta.focus();
+	if(!dragged) {
+		var content = $(this).text();
+		var ta = $("<textarea />");
+		ta.addClass("textlet");
+		ta.css('left', $(this).position().left);
+		ta.css('top', $(this).position().top);
+		ta.blur(textareaBlurFn);
+		ta.click(textareaClickFn);
+		ta.val(content);
+		$(this).replaceWith(ta);
+		ta.focus();
+	}
+}
+
+function objectMousedownFn(event) {
+	dragBaseX = event.pageX;
+	dragBaseY = event.pageY;
+	dragObjectBaseX = $(this).position().left;
+	dragObjectBaseY = $(this).position().top;
+	dragObject = $(this);
 }
 
 // creates a textlet focused
@@ -227,3 +243,34 @@ function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y) {
 	$('#canvas').append(div);
 	return div;
 }
+
+$(document).ready(function() {
+	isMouseDown = false;
+	dragObject = null;
+	dragBaseX = 0;
+	dragBaseY = 0;
+	dragObjectBaseX = 0;
+	dragObjectBaseY = 0;
+	dragged = false;
+
+	$('body').mousedown(function() {
+		isMouseDown = true;
+		dragged = false;
+	})
+	.mouseup(function() {
+		isMouseDown = false;
+		// send server an update on position
+		dragObject = null;
+	})
+	.mousemove(function(event) {
+		if(isMouseDown && dragObject != null) {
+			var curX = event.pageX;
+			var curY = event.pageY;
+			dragObject.css('left', dragObjectBaseX + curX - dragBaseX);
+			dragObject.css('top', dragObjectBaseY + curY - dragBaseY);
+			dragged = true;
+		} else {
+			dragged = false;
+		}
+	});
+});
