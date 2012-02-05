@@ -227,18 +227,6 @@ footerHeight = 12;
 posx = -1;
 posy = -1;
 
-function resizeCapsule() {
-	var screenViewportHeight = document.documentElement.clientHeight;
-	document.getElementById('capsule').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
-	return;
-}
-
-function resizeCanvas() {
-	var screenViewportHeight = document.documentElement.clientHeight;
-	document.getElementById('canvas').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
-	return;
-}
-
 function getObjFromDiv(div) {
 	id = div.attr('objid');
 	if(objs[id])
@@ -300,18 +288,25 @@ function divClickFn(event) {
 	}
 }
 
+var objmenuObject;
+
 function objectContextmenuFn(event) {
 	event.stopPropagation();
+	$('#vmenu').hide();
 	$('#objmenu').css({
 		top: (event.pageY-10)+'px',
 		left: (event.pageX-10)+'px'
 	}).show();
 	menuEvent = event;
+	objmenuObject = $(this);
 	return false;
 }
 
 function objectDeleteMenuHandler(event) {
-	
+	var obj = getObjFromDiv(objmenuObject);
+	obj.deleted = true;
+	$(this).remove();
+	sendDeleteUpdate(obj);
 }
 
 function objectMousedownFn(event) {

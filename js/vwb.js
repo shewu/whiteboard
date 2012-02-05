@@ -1,4 +1,5 @@
 $(document).bind('contextmenu', function(e) {
+	$('#objmenu').hide();
 	$('#vmenu').css({
 		top: (e.pageY-10)+'px',
 		left: (e.pageX-10)+'px'
@@ -16,6 +17,7 @@ $(document).ready(function() {
 	});
 	$(document).click(function() {
 		$('#vmenu').hide();
+		$('#objmenu').hide();
 	});
 	$('#imgUploadForm').bind('contextmenu',function(e) {
 		e.stopPropagation();
@@ -36,3 +38,13 @@ $(document).ready(function() {
 	});
 	menuEvent = null;
 });
+
+$('#canvas').scroll(function() {
+	if ($('#canvas').height() - $(window).height() <= $(window).scrollTop() + 15) {
+		$('#canvas').css('height', $('#canvas').height + 100);
+	}
+	if ($('#canvas').width() - $(window).width() <= $(window).scrollLeft() + 15) {
+		$('#canvas').css('width', $('#canvas').width + 100);
+	}
+});
+

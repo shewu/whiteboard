@@ -47,7 +47,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 
 <body onload="resizeCanvas();" onresize="resizeCanvas();">
 
-<header>
+<header style="position:fixed">
 <a href=/whiteboard/>Home</a> - <? echo $name; ?>
 </header>
 
@@ -58,7 +58,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </div>
 
 <div id=objmenu class=vmenu>
-<div class=firstLi onclick="objectDeleteMenuhandler(event)">Remove</div>
+<div class=firstLi onclick="objectDeleteMenuHandler(event)">Remove</div>
 </div>
 
 <div class=overlayLightbox>
