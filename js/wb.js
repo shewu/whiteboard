@@ -80,8 +80,12 @@ function handleUpdateForNewObject(update) {
 				var id = parseInt(update[0]);
 				var obj = new Obj(id, data);
 				objs[id] = obj;
-				obj.update(update[1], update[2], update[3], update[4],
-				           update[5], update[6]);
+				if(update[7] == 0) { // Only update if the object isn't deleted
+					obj.update(update[1], update[2], update[3], update[4],
+						   update[5], update[6]);
+				} else {
+					obj.remove();
+				}
 			}
 		}
 	});
