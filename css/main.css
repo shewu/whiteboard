@@ -50,3 +50,7 @@ footer {
 	cursor: pointer;
 }
 
+#vmenu .firstLi:hover {
+	background: #ddd;
+}
+
