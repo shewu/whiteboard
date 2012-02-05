@@ -57,6 +57,7 @@ function createTextlet(e) {
 		event.stopPropagation();
 	});
 	$('#canvas').append($textarea);
+	$textarea.focus();
 	return false;
 }
 
