@@ -19,6 +19,7 @@ if (isset($_POST["imgUploadSubmit"])) {
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
 
 			$xml = curl_exec($curl);
+			var_dump($xml);
 
 			curl_close($curl);
 		}
