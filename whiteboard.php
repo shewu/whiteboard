@@ -1,6 +1,4 @@
 <?php
-include('util/mysql.php');
-
 if (isset($_GET["imgUploadSubmit"])) {
 	if (strlen($_GET["imgUploadURL"]) > 0) {
 		echo "upload url = ".$_GET["imgUploadURL"];
@@ -8,6 +6,8 @@ if (isset($_GET["imgUploadSubmit"])) {
 		echo "upload file = ".$_GET["imgUploadFile"];
 	}
 }
+
+include('util/mysql.php');
 
 function get_field($key) {
 	if($_GET[$key])
@@ -98,7 +98,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </div>
 
 <script>
-$("form #imgUploadForm").submit(function() {
+$("form").submit(function() {
 	if ($("input #imgUploadURL").val().length() > 0 || $("input #imguploadFile").val().length() > 0) {
 		alert("You have uploaded something");
 		return true;
