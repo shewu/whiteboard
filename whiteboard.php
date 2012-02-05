@@ -1,5 +1,6 @@
 <?php
 if (isset($_POST["imgUploadSubmit"])) {
+	var_dump($_POST);
 	$iUURL = $_POST["imgURL"];
 	$iUFile = $_POST["imgUpload"];
 	echo "hello, ".$iUURL." ".$iUFile;
