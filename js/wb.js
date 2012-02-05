@@ -32,6 +32,10 @@ function textareaBlurFn() {
 	}
 }
 
+function textareaClickFn(event) {
+	event.stopPropagation();
+}
+
 function divClickFn(event) {
 	event.stopPropagation();
 	if(!dragged) {
@@ -41,6 +45,7 @@ function divClickFn(event) {
 		ta.css('left', $(this).position().left);
 		ta.css('top', $(this).position().top);
 		ta.blur(textareaBlurFn);
+		ta.click(textareaClickFn);
 		ta.val(content);
 		$(this).replaceWith(ta);
 		ta.focus();
@@ -102,6 +107,8 @@ $(document).ready(function() {
 			dragObject.css('left', dragObjectBaseX + curX - dragBaseX);
 			dragObject.css('top', dragObjectBaseY + curY - dragBaseY);
 			dragged = true;
+		} else {
+			dragged = false;
 		}
 	});
 });
