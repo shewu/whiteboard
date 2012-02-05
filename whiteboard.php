@@ -28,11 +28,6 @@ $(document).ready(function() {
 <?
 include('util/mysql.php');
 
-echo "<body onload=\"whiteboard_id = $whiteboard_id; resizeCanvas()\" onresize=\"resizeCanvas()\">";
-?>
-
-<header>
-<?
 function get_field($key) {
 	if($_GET[$key])
 		return $_GET[$key];
@@ -61,7 +56,10 @@ if(get_field('create') == 'yes') {
 	mysql_free_result($result);
 }
 
+echo "<body onload=\"whiteboard_id = $whiteboard_id; resizeCanvas();\" onresize=\"resizeCanvas();\">";
 ?>
+
+<header>
 </header>
 
 <div id=vmenu>
