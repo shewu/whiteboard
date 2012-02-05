@@ -3,6 +3,7 @@
 function Obj(id, type) {
 	this.id = id;
 	this.type = type;
+	this.div = null;
 
 	// deletes the div from view
 	this.remove = function() {
@@ -184,6 +185,7 @@ function textareaBlurFn() {
 	if (text.length > 0) {
 		$(this).replaceWith(div);
 		sendUpdate(obj, text, x, y);
+		obj.div = div;
 	} else {
 		$(this).remove();
 		sendDeleteUpdate(obj);
