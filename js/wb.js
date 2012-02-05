@@ -37,6 +37,7 @@ function createConnection() {
 			if(textStatus == "success") {
 				connection_id = parseInt(connection_id);
 				get_id_string = "whiteboard_id=" + whiteboard_id + "&connection_id=" + connection_id;
+				retrieveAllObjects();
 			}
 		}
 	});
@@ -52,6 +53,7 @@ function retrieveAllObjects() {
 				for(var i = 0; i < objs.length; i++) {
 					objects = new Obj(parseInt(objs[i][0]), objs[i][1]);
 				}
+				retrieveAllUpdates();
 			}
 		}
 	});
@@ -273,6 +275,4 @@ $(document).ready(function() {
 	});
 
 	createConnection();
-	retrieveAllObjects();
-	retrieveAllUpdates();
 });
