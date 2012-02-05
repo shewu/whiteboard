@@ -9,6 +9,7 @@ article, header, footer {
 }
 
 header {
+	width: 99%;
 	background: #DDD;
 	height: 16px;
 	z-index: 1100;
