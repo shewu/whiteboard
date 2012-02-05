@@ -239,7 +239,10 @@ function textareaBlurFn() {
 		}
 	} else {
 		$(this).remove();
-		sendDeleteUpdate(obj);
+		if(obj != null) {
+			obj.currentlyBeingEditted = false;
+			sendDeleteUpdate(obj);
+		}
 	}
 }
 
