@@ -37,7 +37,7 @@ function createConnection() {
 		success: function(data, textStatus, jqXHR) {
 			console.log("received " + textStatus);
 			if(textStatus == "success") {
-				connection_id = parseInt(connection_id);
+				connection_id = parseInt(data);
 				get_id_string = "whiteboard_id=" + whiteboard_id + "&connection_id=" + connection_id;
 				retrieveAllObjects();
 			}
