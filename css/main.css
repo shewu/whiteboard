@@ -25,7 +25,7 @@ footer {
 
 .textlet {
 	position: absolute;
-	border: 1px dashed black;
+	border: 1px dashed #666;
 	color: black;
 	display: inline;
 	padding: 5px;
