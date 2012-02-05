@@ -89,7 +89,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <div class=overlayLightbox>
 <div class=overlayContent>
 <h3>Add an image</h3>
-<form id=imgUploadForm action="<?php echo $PHP_SELF;?>" method=POST>
+<form enctype="multipart/form-data" id=imgUploadForm action="<?php echo $PHP_SELF;?>" method=POST>
 <ul>
 <li>Upload an image: <input type=file id=imgUploadFile name=imgUpload size=1024 /></li>
 <li>Paste from source: <input type=text id=imgUploadURL name=imgURL /></li>
