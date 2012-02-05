@@ -69,9 +69,9 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </header>
 
 <div id=vmenu>
-<div class=firstLi onclick="createTextbox()">Text</div>
-<div class=firstLi>Image</div>
-<div class=firstLi>Hamburger</div>
+<div class=firstLi onclick="textMenuHandler(event)">Text</div>
+<div class=firstLi onclick="imageMenuHandler(event)">Image</div>
+<div class=firstLi onclick="hamburgerMenuHandler(event)">Hamburger</div>
 </div>
 
 

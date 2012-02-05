@@ -197,8 +197,8 @@ function sendDeleteUpdate(obj) {
 }
 
 // keep these two values in sync with the css kthx
-var headerHeight = 16;
-var footerHeight = 12;
+headerHeight = 16;
+footerHeight = 12;
 
 function resizeCapsule() {
 	var screenViewportHeight = document.documentElement.clientHeight;
@@ -237,7 +237,7 @@ function textareaBlurFn() {
 	div.mousedown(objectMousedownFn);
 	div.text(text);
 	if (text.length > 0) {
-		if(obj == null) {
+		if (obj == null) {
 			$(this).remove();
 			sendUpdate(obj, text, x, y);
 		} else {
@@ -258,7 +258,7 @@ function textareaClickFn(event) {
 
 function divClickFn(event) {
 	event.stopPropagation();
-	if(!dragged) {
+	if (!dragged) {
 		var content = $(this).text();
 		var ta = $("<textarea />");
 		var obj = getObjFromDiv($(this));
@@ -364,3 +364,22 @@ $(document).ready(function() {
 
 	createConnection();
 });
+
+function textMenuHandler(e) {
+	e.stopPropagation();
+	createTextbox();
+	return false;
+}
+
+function imageMenuHandler(e) {
+	e.stopPropagation();
+	alert('image');
+	return false;
+}
+
+function hamburgerMenuHandler(e) {
+	e.stopPropagation();
+	alert('hamburger!');
+	return false;
+}
+
