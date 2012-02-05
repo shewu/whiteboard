@@ -123,7 +123,6 @@ function sendUpdate(obj, value, x, y) {
 		data = "action=create_object";
 		data += "&type=textbox";
 		data += "&value=" + value;
-		data += "&style=" + style;
 		data += "&position_x" + x;
 		data += "&position_y" + y;
 		data += "&" + get_id_string;
@@ -237,13 +236,10 @@ function textareaBlurFn() {
 	div.mousedown(objectMousedownFn);
 	div.text(text);
 	if (text.length > 0) {
-		console.log("textbox to regular div");
 		if (obj == null) {
-			console.log("obj is null case");
 			$(this).remove();
 			sendUpdate(obj, text, x, y);
 		} else {
-			console.log("obj is not null case");
 			$(this).replaceWith(div);
 			obj.div = div;
 			obj.currentlyBeingEditted = false;
