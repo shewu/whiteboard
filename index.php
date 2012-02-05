@@ -9,7 +9,9 @@ Header
 
 <div id=capsule>
 <?
-$whiteboards = get_whiteboards();
+
+$query = 'SELECT * FROM whiteboards';
+$whiteboards = mysql_query($query) or die('Query failed: ' . mysql_error());
 $line = mysql_fetch_array($whiteboards);
 if($line) {
 	echo '<form name="select_whiteboard_form" action="whiteboard.php" method="POST">';
