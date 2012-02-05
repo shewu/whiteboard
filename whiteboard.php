@@ -27,9 +27,9 @@ $(document).ready(function() {
 </head>
 <?
 include('util/mysql.php');
-?>
 
-<body onload="resizeCanvas()" onresize="resizeCanvas()">
+echo "<body onload=\"whiteboard_id = $whiteboard_id; resizeCanvas()\" onresize=\"resizeCanvas()\">";
+?>
 
 <header>
 <?
@@ -60,10 +60,6 @@ if(get_field('create') == 'yes') {
 	}
 	mysql_free_result($result);
 }
-
-echo "<script type=\"text/javascript\">";
-echo "var whiteboard_id = $whiteboard_id;";
-echo "</script>
 
 ?>
 </header>

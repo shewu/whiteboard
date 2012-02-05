@@ -8,7 +8,7 @@ function Obj(id, type) {
 	// deletes the div from view
 	this.remove = function() {
 		this.div.remove();
-	}
+	};
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
@@ -21,7 +21,7 @@ function Obj(id, type) {
 			default:
 				break;
 		}
-	}
+	};
 }
 var objects = new Array();
 
