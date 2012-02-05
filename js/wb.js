@@ -271,4 +271,8 @@ $(document).ready(function() {
 			dragged = false;
 		}
 	});
+
+	createConnection();
+	retrieveAllObjects();
+	retrieveAllUpdates();
 });
