@@ -34,6 +34,7 @@ function createConnection() {
 		url: URL,
 		data: "action=create_connection&whiteboard_id=" + whiteboard_id,
 		success: function(data, textStatus, jqXHR) {
+			console.log("received " + textStatus);
 			if(textStatus == "success") {
 				connection_id = parseInt(connection_id);
 				get_id_string = "whiteboard_id=" + whiteboard_id + "&connection_id=" + connection_id;
