@@ -99,6 +99,7 @@ function handleUpdateForNewObject(update) {
 						   update[5], update[6]);
 				} else {
 					obj.remove();
+					obj.deleted = true;
 				}
 			}
 		}
@@ -303,9 +304,9 @@ function objectContextmenuFn(event) {
 }
 
 function objectDeleteMenuHandler(event) {
+	$(this).remove();
 	var obj = getObjFromDiv(objmenuObject);
 	obj.deleted = true;
-	$(this).remove();
 	sendDeleteUpdate(obj);
 }
 
