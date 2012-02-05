@@ -9,6 +9,7 @@
 $(document).ready(function() {
 	$('#canvas').bind('contextmenu', function(e) {
 		var $cmenu = $(this).next();
+		console.log('hi');
 		$('<div class=overlay></div>').css({
 			left: '0px',
 			top: '0px',
@@ -22,6 +23,7 @@ $(document).ready(function() {
 		}).bind('contextmenu', function() {
 			return false;
 		}).appendTo(document.body);
+		console.log('hi');
 		$(this).next().css({
 			left: e.pageX,
 			top: e.pageY,
