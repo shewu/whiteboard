@@ -6,7 +6,9 @@ if (isset($_POST["imgUploadSubmit"])) {
 		;
 	} else if (strlen($iUFile) > 0) {
 		if (move_uploaded_file($_FILES['imgUpload']['tmp_name'], "/tmp/".$_FILES['imgUpload']['name'])) {
+			echo "upload is good";
 			$data = file_get_contents('/tmp/'.$_FILES['imgUpload']['name']);
+			echo $data;
 
 			$pvars = array('image' => base64_encode($data), 'key' => 'ef01658e300dbcf7aa0ecdd18a3bed7c');
 			$timeout = 30;
