@@ -304,9 +304,9 @@ function objectContextmenuFn(event) {
 }
 
 function objectDeleteMenuHandler(event) {
+	$(this).remove();
 	var obj = getObjFromDiv(objmenuObject);
 	obj.deleted = true;
-	obj.remove();
 	sendDeleteUpdate(obj);
 }
 
