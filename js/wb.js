@@ -33,7 +33,7 @@ function textareaBlurFn() {
 }
 
 function textareaClickFn(event) {
-//	event.stopPropagation();
+	event.stopPropagation();
 }
 
 function divClickFn(event) {
@@ -45,7 +45,7 @@ function divClickFn(event) {
 		ta.css('left', $(this).position().left);
 		ta.css('top', $(this).position().top);
 		ta.blur(textareaBlurFn);
-		ta.click(textareaclickFn);
+		ta.click(textareaClickFn);
 		ta.val(content);
 		$(this).replaceWith(ta);
 		ta.focus();
