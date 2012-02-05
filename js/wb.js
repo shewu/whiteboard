@@ -134,6 +134,21 @@ function sendUpdate(obj, value, x, y) {
 	});
 }
 
+function sendValueUpdate(obj, value) {
+	data = "action=update_object";
+	data += "&object_id=" + obj.id;
+	data += "&value=" + value;
+	data += "&" + get_id_string;
+	$.ajax({
+		url: URL,
+		data: data,
+		success: function(data, textStatus, jqXHR) {
+			if(textStatus == "success")
+				retrieveAllUpdates();
+		}
+	});
+}
+
 function sendMoveUpdate(obj, x, y) {
 	data = "action=update_object";
 	data += "&object_id=" + obj.id;
@@ -207,7 +222,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		$(this).replaceWith(div);
-		sendUpdate(obj, text, x, y);
+		sendValueUpdate(obj, text);
 		obj.div = div;
 		obj.currentlyBeingEdited = false;
 	} else {
