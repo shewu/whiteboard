@@ -253,8 +253,8 @@ function get_object_latest_update($object_id) {
 	return mysql_fetch_array($res, MYSQL_ASSOC);
 }
 
-function escape_string_for_js(str) {
-	return str_replace("\'", "\\\'", str_replace("\\", "\\\\", str));
+function escape_string_for_js($st) {
+	return str_replace("\'", "\\\'", str_replace("\\", "\\\\", $st));
 }
 
 function update_to_string($row) {
