@@ -95,23 +95,19 @@ function retrieveAllUpdates(onlyOnce) {
 					var update = updates[i];
 					var id = parseInt(update[0]);
 					var deleted = update[7];
-					var found = false;
-					for(i in objs) {
-						if(objs[i].id == id) {
-							if(!deleted) {
-								objs[i].update(update[1], update[2], update[3], update[4],
-						        	           update[5], update[6]);
-							} else {
-								objs[i].remove();
-								delete objs[i];
-							}
-							found = true;
-							break;
+
+					if(objs[id]) {
+						if(!deleted) {
+							objs[id].update(update[1], update[2], update[3], update[4],
+										   update[5], update[6]);
+						} else {
+							objs[id].remove();
+							delete objs[id];
 						}
-					}
-					if(!found && !deleted) {
+					} else {
 						handleUpdateForNewObject(update);
 					}
+
 				}
 
 				if(!onlyOnce)
