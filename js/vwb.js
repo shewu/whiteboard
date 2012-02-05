@@ -1,4 +1,5 @@
 $(document).bind('contextmenu', function(e) {
+	$('#objmenu').hide();
 	$('#vmenu').css({
 		top: (e.pageY-10)+'px',
 		left: (e.pageX-10)+'px'
@@ -16,6 +17,7 @@ $(document).ready(function() {
 	});
 	$(document).click(function() {
 		$('#vmenu').hide();
+		$('#objmenu').hide();
 	});
 	$('#imgUploadForm').bind('contextmenu',function(e) {
 		e.stopPropagation();
