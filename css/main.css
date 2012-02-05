@@ -10,13 +10,13 @@ article, header, footer {
 
 header {
 	background: red;
-	height: 1em;
+	height: 16px;
 }
 
 footer {
 	background: blue;
 	font-size: x-small;
 	text-align: center;
-	height: 1em;
+	height: 10px;
 }
 
