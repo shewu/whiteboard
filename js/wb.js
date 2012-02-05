@@ -17,6 +17,7 @@ function resizeCanvas() {
 
 function textareaBlurFn() {
 	var text = $(this).val();
+	alert(text);
 	var div = $("<div>");
 	div.addClass("textlet");
 	div.css('left', $(this).position().left);
