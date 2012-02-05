@@ -5,6 +5,5 @@
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <script src="js/jq.js"></script>
 <script src="js/wb.js"></script>
-<script src="js/fu.js"></script>
 </head>
 
