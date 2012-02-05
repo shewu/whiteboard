@@ -7,15 +7,22 @@ function Obj(id, type) {
 
 	// deletes the div from view
 	this.remove = function() {
-		this.div.remove();
+		if(this.div != null)
+			this.div.remove();
 	};
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
+		console.log("value = " + value);
+		console.log("style = " + style);
+		console.log("pos_x = " + pos_x);
+		console.log("pos_y = " + pos_y);
+		console.log("size_x = " + size_x);
+		console.log("size_y = " + size_y);
 		this.remove();
 		switch(this.type) {
 			case "textbox":
-				this.div = createTextletUnfocused(value, pos_x, pox_y, size_x, size_y);
+				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y);
 				break;
 
 			default:
@@ -37,7 +44,7 @@ function createConnection() {
 		success: function(data, textStatus, jqXHR) {
 			console.log("received " + textStatus);
 			if(textStatus == "success") {
-				connection_id = parseInt(connection_id);
+				connection_id = parseInt(data);
 				get_id_string = "whiteboard_id=" + whiteboard_id + "&connection_id=" + connection_id;
 				retrieveAllObjects();
 			}
@@ -81,9 +88,12 @@ function retrieveAllUpdates() {
 		url: URL,
 		data: "action=get_updates&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
+			console.log("data = " + data);
 			if(textStatus == "success") {
 				var updates = eval(data);
-				for(update in updates) {
+				for(i in updates) {
+					var update = updates[i];
+					console.log("update: " + update);
 					var id = parseInt(update[0]);
 					var deleted = update[7];
 					var found = false;
