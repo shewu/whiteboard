@@ -240,6 +240,9 @@ function get_all_latest_updates() {
 		}
 	}
 	$ans = $ans . " ]";
+	if($_GET["connection_id"]) {
+		update_user_timestamp($_GET["connection_id"]);
+	}
 	return $ans;
 }
 
