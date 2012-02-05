@@ -364,10 +364,13 @@ function textMenuHandler(e) {
 function imageMenuHandler(e) {
 	e.stopPropagation();
 	$('#vmenu').css('display', 'none');
-	overlay = $("<div>");
-	overlay.addClass("overlay");
-	overlay.text('hello');
-	$('body').append(overlay);
+	overlayLightbox = $("<div>");
+	overlayLightbox.addClass("overlayLightbox");
+	$('body').append(overlayLightbox);
+	overlayContent = $("<div>");
+	overlayContent.addClass("overlayContent");
+	overlayContent.text('hello');
+	overlayLightBox.append(overlayContent);
 	return false;
 }
 
