@@ -4,7 +4,7 @@ function Obj(id, type) {
 	this.id = id;
 	this.type = type;
 	this.div = null;
-	this.currentlyBeingEditted = false;
+	this.currentlyBeingEdited = false;
 
 	// deletes the div from view
 	this.remove = function() {
@@ -14,7 +14,7 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
-		if(this.currentlyBeingEditted)
+		if(this.currentlyBeingEdited)
 			return;
 		this.remove();
 		switch(this.type) {
@@ -57,7 +57,7 @@ function retrieveAllObjects() {
 				for(var i = 0; i < objs.length; i++) {
 					objects = new Obj(parseInt(objs[i][0]), objs[i][1]);
 				}
-				retrieveAllUpdates();
+				retrieveAllUpdates(false);
 			}
 		}
 	});
@@ -79,7 +79,7 @@ function handleUpdateForNewObject(update) {
 }
 
 var retrieveAllUpdatesFirstTime = true;
-function retrieveAllUpdates() {
+function retrieveAllUpdates(onlyOnce) {
 	var action = (retrieveAllUpdatesFirstTime ? "get_all_latest_updates" : "get_updates");
 	retrieveAllUpdatesFirstTime = false;
 	$.ajax({
@@ -111,13 +111,15 @@ function retrieveAllUpdates() {
 					}
 				}
 
-				setTimeout(retrieveAllUpdates, 1000);
+				if(!onlyOnce)
+					setTimeout("retrieveAllUpdates(false);", 1000);
 			}
 		}
 	});
 }
 
 function sendUpdate(obj, value, x, y) {
+<<<<<<< HEAD
 	if(obj == null) {
 		data = "action=create_object";
 		data += "&type=textbox";
@@ -139,9 +141,29 @@ function sendUpdate(obj, value, x, y) {
 		data += "&" + get_id_string;
 		$.ajax({
 			url: URL,
-			data: data
+			data: data,
+			success: function(data, textStatus, jqXHR) {
+				if(textStatus == "success")
+					retrieveAllUpdates(true);
+			}
 		});
 	}
+}
+
+function sendMoveUpdate(obj, x, y) {
+	data = "action=update_object";
+	data += "&object_id=" + obj.id;
+	data += "&position_x=" + x;
+	data += "&position_y=" + y;
+	data += "&" + get_id_string;
+	$.ajax({
+		url: URL,
+		data: data,
+		success: function(data, textStatus, jqXHR) {
+			if(textStatus == "success")
+				retrieveAllUpdates(true);
+		}
+	});
 }
 
 function sendDeleteUpdate(obj) {
@@ -202,6 +224,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		sendUpdate(obj, text, x, y);
+<<<<<<< HEAD
 		if(obj == null) {
 			$(this).remove();
 		} else {
@@ -209,6 +232,10 @@ function textareaBlurFn() {
 			obj.div = div;
 			obj.currentlyBeingEditted = false;
 		}
+=======
+		obj.div = div;
+		obj.currentlyBeingEdited = false;
+>>>>>>> 1a5994c71f4fb6610d7b128e6d57708e7e601537
 	} else {
 		$(this).remove();
 		sendDeleteUpdate(obj);
@@ -234,7 +261,7 @@ function divClickFn(event) {
 		ta.val(content);
 		$(this).replaceWith(ta);
 		ta.focus();
-		obj.currentlyBeingEditted = true;
+		obj.currentlyBeingEdited = true;
 	}
 }
 
@@ -244,6 +271,7 @@ function objectMousedownFn(event) {
 	dragObjectBaseX = $(this).position().left;
 	dragObjectBaseY = $(this).position().top;
 	dragObject = $(this);
+	getObjFromDiv($(this)).currentlyBeingEdited = true;
 }
 
 // creates a textlet focused
@@ -299,8 +327,12 @@ $(document).ready(function() {
 	})
 	.mouseup(function(e) {
 		isMouseDown = false;
-		if(dragged && dragObject != null)
-			sendUpdate(getObjFromDiv(dragObject), dragObject.text(), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY);
+		if(dragged && dragObject != null) {
+			sendMoveUpdate(getObjFromDiv(dragObject), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY);
+		}
+		if(dragObject != null) {
+			getObjFromDiv(dragObject).currentlyBeingEdited = false;
+		}
 		dragObject = null;
 	})
 	.mousemove(function(event) {
