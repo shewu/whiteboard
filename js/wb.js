@@ -29,7 +29,7 @@ function createTextlet(e) {
 	}
 	var $textarea = $("<textarea class=textlet style='top:"+posy+"px;left:"+posx+"px'/>");
 	$textarea.blur(function() {
-		var text = $(this).html();
+		var text = $(this).text();
 		var div = $("<div class=textlet style='top:"+posy+"px;left:"+posx+"px'>");
 		div.click(function(event) {
 			event.stopPropagation();
