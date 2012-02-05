@@ -21,3 +21,9 @@ footer {
 	height: 12px;
 }
 
+.textlet {
+	background: black;
+	color: white;
+	display: inline-block;
+}
+
