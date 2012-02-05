@@ -1,20 +1,16 @@
 <?php
+$imgurURL = "";
 if (isset($_POST["imgUploadSubmit"])) {
 	$iUURL = $_POST["imgURL"];
 	if (strlen($iUURL) > 0) {
 		echo "url";
 	} else if (strlen($_FILES['imgUpload']['name']) > 0) {
-		echo "file";
 		if (move_uploaded_file($_FILES['imgUpload']['tmp_name'], "/tmp/".$_FILES['imgUpload']['name'])) {
-			echo "hi";
 			$data = file_get_contents('/tmp/'.$_FILES['imgUpload']['name']);
-			echo "hi";
 
 			$pvars = array('image' => base64_encode($data), 'key' => 'ef01658e300dbcf7aa0ecdd18a3bed7c');
 			$timeout = 30;
-			echo "hi";
 			$curl = curl_init();
-			echo "curl = ".$curl."<br/>";
 
 			curl_setopt($curl, CURLOPT_URL, 'http://api.imgur.com/2/upload.xml');
 			curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
@@ -22,11 +18,10 @@ if (isset($_POST["imgUploadSubmit"])) {
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
 
-			echo "hi";
 			$xml = curl_exec($curl);
-			var_dump($xml);
+			$xmlh = simplexml_load_string($xml);
+			$imgurURL = $xmlh->links->original;
 
-			echo "hi";
 			curl_close($curl);
 		} else {
 			echo "moving failed";
@@ -115,7 +110,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <div class=overlayLightbox>
 <div class=overlayContent>
 <h3>Add an image</h3>
-<form enctype="multipart/form-data" id=imgUploadForm action="<?php echo $PHP_SELF;?>" method=POST>
+<form enctype="multipart/form-data" id=imgUploadForm action="processImgUpload()" method=POST>
 <ul>
 <li>Upload an image: <input type=file id=imgUploadFile name=imgUpload /></li>
 <li>Paste from source: <input type=text id=imgUploadURL name=imgURL /></li>
