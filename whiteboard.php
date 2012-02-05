@@ -11,7 +11,7 @@ function get_field($key) {
 }
 
 if(get_field('create') == 'yes') {
-	$name = get_field('name');
+	$name = get_field('whiteboard_name');
 	if($name == '')
 		die('no name');
 	mysql_query("INSERT INTO whiteboards (name) VALUES ('$name')") or die('could not insert');
