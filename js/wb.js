@@ -23,7 +23,7 @@ function Obj(id, type) {
 				break;
 
 			case "image":
-				this.div = createImagelet(value, pos_x, pos_y);
+				this.div = createImagelet(value, pos_x, pos_y, this.id);
 
 			default:
 				break;
@@ -391,7 +391,7 @@ function hamburgerMenuHandler(e) {
 	return false;
 }
 
-function createImagelet(url, posx, posy) {
+function createImagelet(url, posx, posy, objid) {
 	img = $('<img/>');
 	img.attr('src', url);
 	imglet = $('<div>');
@@ -399,6 +399,7 @@ function createImagelet(url, posx, posy) {
 	imglet.append(img);
 	imglet.css('left', posx);
 	imglet.css('top', posy);
+	imglet.attr('objid', '' + objid);
 	imglet.mousedown(objectMousedownFn);
 	$('#canvas').append(imglet);
 	return imglet;
