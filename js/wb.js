@@ -428,8 +428,7 @@ function processImgFileUpload(file) {
 function processImgUpload() {
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
-	alert($('input[name=imgRadio]:checked'));
-	switch ($('input[name=imgRadio]:checked')) {
+	switch ($('input[name=imgRadio]:checked', '#imgUploadForm').val()) {
 		case "file":
 			if (imgFile) {
 				processImgFileUpload(imgFile);
