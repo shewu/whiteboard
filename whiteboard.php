@@ -4,7 +4,11 @@ if (isset($_GET["imgUploadSubmit"])) {
 		echo "upload url = ".$_GET["imgUploadURL"];
 	} else if (strlen($_GET["imgUploadFile"]) > 0) {
 		echo "upload file = ".$_GET["imgUploadFile"];
+	} else {
+		echo "nothing uploaded";
 	}
+} else {
+	echo "imgUploadSubmit not set";
 }
 
 include('util/mysql.php');
