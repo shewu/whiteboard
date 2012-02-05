@@ -15,6 +15,23 @@ function resizeCanvas() {
 	return;
 }
 
+function textareaBlurFn() {
+	var text = $(this).val();
+	var div = $("<div>");
+	div.addClass("textlet");
+	div.position($(this).position());
+	div.click(divClickFn);
+	div.text(text);
+	$(this).replaceWith(div);
+}
+
+function divClickFn(event) {
+	event.stopPropagation();
+	var content = $(this).html();
+	var ta = $("<textarea class=textlet />");
+	ta.val(content);
+}
+
 function createTextlet(e) {
 	if (!e) {
 		e = window.event;
@@ -28,17 +45,7 @@ function createTextlet(e) {
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	var $textarea = $("<textarea class=textlet style='top:"+posy+"px;left:"+posx+"px'/>");
-	$textarea.blur(function() {
-		var text = $(this).val();
-		var div = $("<div class=textlet style='top:"+posy+"px;left:"+posx+"px'>");
-		div.click(function(event) {
-			event.stopPropagation();
-			var content = $(this).html();
-			var ta = $("<textarea/>");
-		});
-		div.text(text);
-		$(this).replaceWith(div);
-	});
+	$textarea.blur(textareaBlurFn);
 	$textarea.click(function(event) {
 		event.stopPropagation();
 	});
