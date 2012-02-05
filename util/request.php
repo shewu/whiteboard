@@ -45,7 +45,42 @@ function get_new_connection() {
 }
 
 function update_object() {
-	
+	$whiteboard_id = $_GET["whiteboard_id"];
+	if(!$whiteboard_id) {
+		return NULL;
+	}
+	$object_id = $_GET["object_id"];
+	if(!$object_id) {
+		return NULL;
+	}
+	// Verify that this object exists
+	$query = "SELECT * FROM objects WHERE id = $object_id AND whiteboard_id = $whiteboard_id";
+	$res = mysql_query($query);
+	if(mysql_num_rows($res) <= 0) {
+		return NULL;
+	}
+
+	$row = get_object_latest_update($object_id);
+	if($_GET["value"]) {
+		$row["value"] = $_GET["value"];
+	}
+	if($_GET["style"]) {
+		$row["style"] = $_GET["style"];
+	}
+	if($_GET["position_x"]) {
+		$row["position_x"] = $_GET["position_x"];
+	}
+	if($_GET["position_y"]) {
+		$row["position_y"] = $_GET["position_y"];
+	}
+	if($_GET["size_x"]) {
+		$row["size_x"] = $_GET["size_x"];
+	}
+	if($_GET["size_y"]) {
+		$row["size_y"] = $_GET["size_y"];
+	}
+	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], NULL )";
+	mysql_query($query);
 }
 
 function get_objects() {
@@ -83,6 +118,12 @@ function update_user_timestamp($connection_id) {
 	} else {
 		return NULL;
 	}
+}
+
+function get_object_latest_update($object_id) {
+	$query = "SELECT * FROM object_updates WHERE object_id = $object_id ORDER BY time DESC";
+	$res = mysql_query($query);
+	return mysql_fetch_array($res, MYSQL_ASSOC);
 }
 
 function update_to_string($row) {
