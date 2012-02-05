@@ -262,6 +262,7 @@ function createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, objid) {
 	div.click(divClickFn);
 	div.text(value);
 	div.attr('title', '' + objid);
+	div.mousedown(objectMousedownFn);
 	$('#canvas').append(div);
 	return div;
 }
