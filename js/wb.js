@@ -22,6 +22,9 @@ function Obj(id, type) {
 				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, this.id);
 				break;
 
+			case "image":
+				this.div = createImagelet(value, pos_x, pos_y);
+
 			default:
 				break;
 		}
@@ -117,9 +120,9 @@ function retrieveAllUpdates(onlyOnce) {
 	});
 }
 
-function sendUpdateCreate(value, x, y, div) {
+function sendUpdateCreate(value, type, x, y, div) {
 	data = "action=create_object";
-	data += "&type=textbox";
+	data += "&type=" + type;
 	data += "&value=" + value;
 	data += "&position_x=" + x;
 	data += "&position_y=" + y;
@@ -223,7 +226,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		if (obj == null) {
-			sendUpdateCreate(text, x, y, $(this));
+			sendUpdateCreate(text, "textbox", x, y, $(this));
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
@@ -381,7 +384,7 @@ function hamburgerMenuHandler(e) {
 	return false;
 }
 
-function createImagelet(url) {
+function createImagelet(url, posx, posy) {
 	img = $('<img/>');
 	img.attr('src', url);
 	imglet = $('<div>');
@@ -390,6 +393,7 @@ function createImagelet(url) {
 	imglet.css('left', posx);
 	imglet.css('top', posy);
 	$('#canvas').append(imglet);
+	return imglet;
 }
 
 function processImgFileUpload(file) {
@@ -406,6 +410,7 @@ function processImgFileUpload(file) {
 		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
 		createImagelet(rsp);
+		sendUpdateCreate(rsp, "image", posx, posy, null);
 	}
 
 	xhr.send(fd);
@@ -416,7 +421,9 @@ function processImgUpload() {
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
 	if (imgURL.length > 0) {
 		// we need to do some validation
-		createImagelet(imgURL);
+		//createImagelet(imgURL);
+		sendUpdateCreate(imgURL, "image", posx, posy, null);
+	}
 	} else if (imgFile) {
 		processImgFileUpload(imgFile);
 	} else {
