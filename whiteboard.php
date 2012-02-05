@@ -35,7 +35,9 @@ if(get_field('create') == 'yes') {
 	mysql_free_result($result);
 }
 
-echo "viewing whiteboard $name";
+echo "<script type=\"text/javascript\">";
+echo "var whiteboard_id = $whiteboard_id;";
+echo "</script>
 
 ?>
 </header>
