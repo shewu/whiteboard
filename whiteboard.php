@@ -2,6 +2,7 @@
 if (isset($_POST["imgUploadSubmit"])) {
 	$iUURL = $_POST["imgURL"];
 	$iUFile = $_POST["imgUpload"];
+	echo "hello, ".$iUURL." ".$iUFile;
 	if (strlen($iUURL) > 0) {
 		;
 	} else if (strlen($iUFile) > 0) {
