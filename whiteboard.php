@@ -44,6 +44,7 @@ $(document).bind('contextmenu', function(e) {
 		top: e.pageY+'px',
 		left: e.pageX+'px'
 	}).show();
+	menuEvent = e;
 	return false;
 });
 
@@ -54,6 +55,7 @@ $(document).ready(function() {
 	$(document).click(function() {
 		$('#vmenu').hide();
 	});
+	menuEvent = null;
 });
 
 whiteboard_id = <?php echo "$whiteboard_id"; ?>;
@@ -67,9 +69,9 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 </header>
 
 <div id=vmenu>
-<div class=firstLi>Text</div>
-<div class=firstLi>Image</div>
-<div class=firstLi>Hamburger</div>
+<div class=firstLi onclick="textMenuHandler(event)">Text</div>
+<div class=firstLi onclick="imageMenuHandler(event)">Image</div>
+<div class=firstLi onclick="hamburgerMenuHandler(event)">Hamburger</div>
 </div>
 
 

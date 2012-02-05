@@ -197,8 +197,8 @@ function sendDeleteUpdate(obj) {
 }
 
 // keep these two values in sync with the css kthx
-var headerHeight = 16;
-var footerHeight = 12;
+headerHeight = 16;
+footerHeight = 12;
 
 function resizeCapsule() {
 	var screenViewportHeight = document.documentElement.clientHeight;
@@ -238,7 +238,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		console.log("textbox to regular div");
-		if(obj == null) {
+		if (obj == null) {
 			console.log("obj is null case");
 			$(this).remove();
 			sendUpdate(obj, text, x, y);
@@ -261,7 +261,7 @@ function textareaClickFn(event) {
 
 function divClickFn(event) {
 	event.stopPropagation();
-	if(!dragged) {
+	if (!dragged) {
 		var content = $(this).text();
 		var ta = $("<textarea />");
 		var obj = getObjFromDiv($(this));
@@ -285,6 +285,11 @@ function objectMousedownFn(event) {
 	dragObjectBaseY = $(this).position().top;
 	dragObject = $(this);
 	getObjFromDiv($(this)).currentlyBeingEdited = true;
+}
+
+function createTextbox() {
+	if (menuEvent != null)
+		createTextlet(menuEvent);
 }
 
 // creates a textlet focused
@@ -362,3 +367,23 @@ $(document).ready(function() {
 
 	createConnection();
 });
+
+function textMenuHandler(e) {
+	e.stopPropagation();
+	$('#vmenu').css('display', 'none');
+	createTextbox();
+	return false;
+}
+
+function imageMenuHandler(e) {
+	e.stopPropagation();
+	alert('image');
+	return false;
+}
+
+function hamburgerMenuHandler(e) {
+	e.stopPropagation();
+	alert('hamburger!');
+	return false;
+}
+
