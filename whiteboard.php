@@ -49,7 +49,6 @@ $(document).ready(function() {
 	function() {
 		$(this).css('background-color', '#fff');
 		$(this).find('.innerLi').hide();
-	}
 	});
 });
 </script>
