@@ -2,7 +2,6 @@ body {
 	font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	border: 0;
 	margin: 0;
-	overflow: hidden;
 }
 
 article, header, footer {
@@ -10,6 +9,7 @@ article, header, footer {
 }
 
 header {
+	width: 99%;
 	background: #DDD;
 	height: 16px;
 	z-index: 1100;
