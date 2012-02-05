@@ -1,10 +1,10 @@
 <?php
 if (isset($_POST["imgUploadSubmit"])) {
-	echo "hey";
 	$iUURL = $_POST["imgURL"];
 	if (strlen($iUURL) > 0) {
-		;
+		echo "url";
 	} else if (strlen($_FILES['imgUpload']['name']) > 0) {
+		echo "file";
 		if (move_uploaded_file($_FILES['imgUpload']['tmp_name'], "/tmp/".$_FILES['imgUpload']['name'])) {
 			$data = file_get_contents('/tmp/'.$_FILES['imgUpload']['name']);
 
@@ -29,9 +29,9 @@ if (isset($_POST["imgUploadSubmit"])) {
 		} else {
 			echo "moving failed";
 		}
+	} else {
+		echo "wat";
 	}
-} else {
-	echo "ney";
 }
 
 include('util/mysql.php');
