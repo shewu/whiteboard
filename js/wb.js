@@ -19,7 +19,8 @@ function textareaBlurFn() {
 	var text = $(this).val();
 	var div = $("<div>");
 	div.addClass("textlet");
-	div.position($(this).position());
+	div.css('left', $(this).position().left);
+	div.css('top', $(this).position().top);
 	div.click(divClickFn);
 	div.text(text);
 	$(this).replaceWith(div);
