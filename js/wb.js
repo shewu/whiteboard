@@ -88,9 +88,11 @@ function retrieveAllUpdates() {
 		url: URL,
 		data: "action=get_updates&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
+			console.log("data = " + data);
 			if(textStatus == "success") {
 				var updates = eval(data);
 				for(update in updates) {
+					console.log("update: " + update.join(";"));
 					var id = parseInt(update[0]);
 					var deleted = update[7];
 					var found = false;
