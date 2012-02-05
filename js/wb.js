@@ -240,7 +240,7 @@ function textareaBlurFn() {
 	} else {
 		$(this).remove();
 		if(obj != null) {
-			obj.currentlyBeingEdited = true;
+			obj.currentlyBeingEdited = false;
 			sendDeleteUpdate(obj);
 		}
 	}
