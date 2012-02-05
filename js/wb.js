@@ -281,16 +281,21 @@ function divClickFn(event) {
 
 function objectContextmenuFn(event) {
 	event.stopPropagation();
+	$('#vmenu').hide();
 	$('#objmenu').css({
 		top: (event.pageY-10)+'px',
 		left: (event.pageX-10)+'px'
 	}).show();
 	menuEvent = event;
+	objmenuObject = $(this);
 	return false;
 }
 
 function objectDeleteMenuHandler(event) {
-	
+	var obj = getObjFromDiv(objmenuObject);
+	obj.deleted = true;
+	$(this).remove();
+	sendDeleteUpdate(obj);
 }
 
 function objectMousedownFn(event) {
