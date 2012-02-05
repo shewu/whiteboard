@@ -147,7 +147,7 @@ function create_object() {
 		return NULL;
 	}
 
-	$row = [];
+	$row = Array();
 	if($_GET["value"]) {
 		$row["value"] = $_GET["value"];
 	} else {
