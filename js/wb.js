@@ -31,13 +31,17 @@ function createTextlet(e) {
 	$textarea.blur(function() {
 		var text = $(this).html();
 		var div = $("<div>");
+		div.addClass("textlet");
 		div.click(function(event) {
 			event.stopPropagation();
 			var content = $(this).html();
 			var ta = $("<textarea/>");
-		})
+		});
 		div.val(text);
 		$(this).replaceWith(div);
+	});
+	$textarea.click(function(event) {
+		event.stopPropagation();
 	});
 	$('#canvas').append($textarea);
 	return false;
