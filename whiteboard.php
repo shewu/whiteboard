@@ -4,7 +4,7 @@
 <title>Meatboard</title>
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <script src="js/jq.js"></script>
-<script src="jq/wb.js"></script>
+<script src="js/wb.js"></script>
 <script>
 $(document).ready(function() {
 	$('#canvas').bind('contextmenu', function(e) {
