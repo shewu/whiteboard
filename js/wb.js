@@ -29,8 +29,14 @@ function textareaBlurFn() {
 function divClickFn(event) {
 	event.stopPropagation();
 	var content = $(this).html();
-	var ta = $("<textarea class=textlet />");
+	var ta = $("<textarea />");
+	ta.addClass("textlet");
+	ta.css('left', $(this).position().left);
+	ta.css('top', $(this).position().top);
+	ta.blur(textareaBlurFn);
 	ta.val(content);
+	$(this).replaceWith(ta);
+	ta.focus();
 }
 
 function createTextlet(e) {
