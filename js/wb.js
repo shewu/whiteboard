@@ -27,5 +27,6 @@ function createTextlet() {
 	}
 	var $textarea = "<div rows=2 cols=20 class=textlet style='top:"+posy+"px;left:"+posx+"px' onblur='this.contentEditable=false' onclick='this.contentEditable=true' onload='this.contentEditable=true'></div>";
 	$('#canvas').append($textarea);
+	$textarea.focus();
 }
 
