@@ -369,6 +369,6 @@ function hamburgerMenuHandler(e) {
 }
 
 function processImgUpload() {
-	alert(document.forms['imgUploadForm'].imgURL.text);
+	alert(document.forms['imgUploadForm'].elements['imgURL'].value);
 }
 
