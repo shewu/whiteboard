@@ -24,11 +24,11 @@ $(document).ready(function() {
 		$('[name=imgRadio]').filter('[value=url]').prop("checked",true);
 	});
 	$('[name=imgRadio]').filter('[value=file]').click(function() {
-		$('#imgUploadFile').focus();
-		$('#imgUploadFile').select();
+		$('#imgUploadFile').click();
 	});
 	$('[name=imgRadio]').filter('[value=url]').click(function() {
-		$('#imgUploadURL').click();
+		$('#imgUploadURL').focus();
+		$('#imgUploadURL').select();
 	});
 	menuEvent = null;
 });
