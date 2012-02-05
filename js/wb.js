@@ -282,7 +282,7 @@ $(document).ready(function() {
 	.mouseup(function(e) {
 		isMouseDown = false;
 		if(dragged && dragObject != null)
-			sendUpdate(getObjFromDiv(dragObject, dragObject.text(), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY));
+			sendUpdate(getObjFromDiv(dragObject), dragObject.text(), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY);
 		dragObject = null;
 	})
 	.mousemove(function(event) {
