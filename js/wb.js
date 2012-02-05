@@ -374,12 +374,14 @@ function textMenuHandler(e) {
 
 function imageMenuHandler(e) {
 	e.stopPropagation();
+	$('#vmenu').css('display', 'none');
 	alert('image');
 	return false;
 }
 
 function hamburgerMenuHandler(e) {
 	e.stopPropagation();
+	$('#vmenu').css('display', 'none');
 	alert('hamburger!');
 	return false;
 }
