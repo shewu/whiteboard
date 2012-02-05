@@ -28,6 +28,6 @@ function createTextlet() {
 	}
 	console.log("relX = " + posx + " relY = " + posy);
 	$('canvas').append('<div class=textlet style="margin-top:'+posy+';margin-left:'+posx+';">Hello</div>');
-	$('canvas').hide('slow');
+	$('header').hide('slow');
 }
 
