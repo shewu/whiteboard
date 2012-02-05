@@ -5,6 +5,55 @@ include('util/mysql.php');
 
 <body onload="resizeCanvas()" onresize="resizeCanvas()">
 
+<script>
+$(document).ready(function() {
+	$('#canvas').bind('contextmenu', function(e) {
+		var $cmenu = $(this).next();
+		$('<div class=overlay></div>').css({
+			left: '0px',
+			top: '0px',
+			position: 'absolute',
+			width: '100%',
+			height: '100%',
+			zIndex: '100'
+		}).click(function() {
+			$(this).remove();
+			$cmenu.hide();
+		}).bind('contextmenu', function() {
+			return false;
+		}).appendTo(document.body);
+		$(this).next().css({
+			left: e.pageX,
+			top: e.pageY,
+			zIndex: '101'
+		}).show();
+		return false;
+	});
+	$('#vmenu .firstLi').live('click', function() {
+		if ($(this).children().size() == 1) {
+			$('#vmenu').hide();
+			$('.overlay').hide();
+		}
+	});
+	$('.firstLi').hover(function() {
+		$(this).css({
+			backgroundColor: '#E0EDFE',
+			cursor: 'pointer'
+		});
+		if ($(this).children().size() > 0) {
+			$(this).find('.innerLi').show();
+			$(this).css({
+				cursor: 'default'
+			});
+		},
+		function() {
+			$(this).css('background-color', '#fff');
+			$(this).find('.innerLi').hide();
+		}
+	});
+});
+</script>
+
 <header>
 <?
 function get_field($key) {
@@ -39,6 +88,13 @@ echo "viewing whiteboard $name";
 
 ?>
 </header>
+
+<div id=vmenu>
+<div class=firstLi>Text</div>
+<div class=firstLi>Image</div>
+<div class=firstLi>Hamburger</div>
+</div>
+
 
 <div id=canvas onclick="createTextlet(event)">
 </div>
