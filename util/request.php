@@ -253,8 +253,14 @@ function get_object_latest_update($object_id) {
 	return mysql_fetch_array($res, MYSQL_ASSOC);
 }
 
+function escape_string_for_js(str) {
+	return str_replace("\'", "\\\'", str_replace("\\", "\\\\", str));
+}
+
 function update_to_string($row) {
-	$ans = "[ $row[object_id], '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted] ]";
+	$value_esc = escape_string_for_js($row[value]);
+	$style_esc = escape_string_for_js($row[style]);
+	$ans = "[ $row[object_id], '$value_esc', '$style_esc', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted] ]";
 	return $ans;
 }
 ?>
