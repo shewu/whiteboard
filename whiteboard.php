@@ -7,8 +7,6 @@ include('util/header.php');
 <canvas>
 </canvas>
 
-</body>
-
 <?
 include('util/footer.php');
 ?>
