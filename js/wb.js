@@ -16,7 +16,7 @@ function Obj(id, type) {
 		this.remove();
 		switch(this.type) {
 			case "textbox":
-				this.div = createTextletUnfocused(value, pos_x, pox_y, size_x, size_y);
+				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y);
 				break;
 
 			default:
