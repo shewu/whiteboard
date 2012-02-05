@@ -374,7 +374,7 @@ $(document).ready(function() {
 	dragObjectBaseY = 0;
 	dragged = false;
 
-	$('body').mousedown(function() {
+	$('#canvas').mousedown(function() {
 		isMouseDown = true;
 		dragged = false;
 	})
