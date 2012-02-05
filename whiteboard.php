@@ -1,5 +1,6 @@
 <?php
 if (isset($_POST["imgUploadSubmit"])) {
+	echo "hey";
 	$iUURL = $_POST["imgURL"];
 	if (strlen($iUURL) > 0) {
 		;
@@ -29,6 +30,8 @@ if (isset($_POST["imgUploadSubmit"])) {
 			echo "moving failed";
 		}
 	}
+} else {
+	echo "ney";
 }
 
 include('util/mysql.php');
