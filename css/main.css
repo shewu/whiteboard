@@ -8,3 +8,7 @@ article, header, footer {
 	display: block;
 }
 
+footer {
+	font-size: x-small;
+}
+
