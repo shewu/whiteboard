@@ -25,9 +25,10 @@ $(document).ready(function() {
 	});
 	$('[name=imgRadio]').filter('[value=file]').click(function() {
 		$('#imgUploadFile').focus();
+		$('#imgUploadFile').select();
 	});
 	$('[name=imgRadio]').filter('[value=url]').click(function() {
-		$('#imgUploadURL').focus();
+		$('#imgUploadURL').click();
 	});
 	menuEvent = null;
 });
