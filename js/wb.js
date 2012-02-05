@@ -12,12 +12,6 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
-		console.log("value = " + value);
-		console.log("style = " + style);
-		console.log("pos_x = " + pos_x);
-		console.log("pos_y = " + pos_y);
-		console.log("size_x = " + size_x);
-		console.log("size_y = " + size_y);
 		this.remove();
 		switch(this.type) {
 			case "textbox":
@@ -36,12 +30,10 @@ objects = new Array();
 URL = "util/request.php";
 
 function createConnection() {
-	console.log("testing console.log");
 	$.ajax({
 		url: URL,
 		data: "action=create_connection&whiteboard_id=" + whiteboard_id,
 		success: function(data, textStatus, jqXHR) {
-			console.log("received " + textStatus);
 			if(textStatus == "success") {
 				connection_id = parseInt(data);
 				get_id_string = "whiteboard_id=" + whiteboard_id + "&connection_id=" + connection_id;
@@ -90,12 +82,10 @@ function retrieveAllUpdates() {
 		url: URL,
 		data: "action=" + action + "&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
-			console.log("data = " + data);
 			if(textStatus == "success") {
 				var updates = eval(data);
 				for(i in updates) {
 					var update = updates[i];
-					console.log("update: " + update);
 					var id = parseInt(update[0]);
 					var deleted = update[7];
 					var found = false;
@@ -170,9 +160,7 @@ function resizeCanvas() {
 
 function getObjFromDiv(div) {
 	id = div.attr('title');
-	console.log("in getObjFromDiv, length = " + objs.length);
 	for(i in objs) {
-		console.log("getObjFromDiv: object id = " + objs[i].id);
 		if(objs[i].id == id) {
 			return objs[i];
 		}
