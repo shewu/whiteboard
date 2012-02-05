@@ -234,13 +234,13 @@ function textareaBlurFn() {
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
-			obj.currentlyBeingEditted = false;
+			obj.currentlyBeingEdited = false;
 			sendValueUpdate(obj, text);
 		}
 	} else {
 		$(this).remove();
 		if(obj != null) {
-			obj.currentlyBeingEditted = false;
+			obj.currentlyBeingEdited = true;
 			sendDeleteUpdate(obj);
 		}
 	}
