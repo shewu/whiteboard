@@ -3,7 +3,6 @@
 function Obj(id, type) {
 	this.id = id;
 	this.type = type;
-	this.div = null;
 
 	// deletes the div from view
 	this.remove = function() {
@@ -122,7 +121,7 @@ function retrieveAllUpdates() {
 	});
 }
 
-function sendUpdate(obj, value, x, y, newdiv) {
+function sendUpdate(obj, value, x, y) {
 	data = "action=update_object";
 	data += "&object_id=" + obj.id;
 	data += "&value=" + value;
@@ -133,12 +132,6 @@ function sendUpdate(obj, value, x, y, newdiv) {
 		url: URL,
 		data: data
 	});
-	for(var i = 0; i < objs.length; i++) {
-		if(objs[i] == obj) {
-			objs[i].div = newdiv;
-			break;
-		}
-	}
 }
 
 function sendDeleteUpdate(obj) {
@@ -200,7 +193,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		$(this).replaceWith(div);
-		sendUpdate(obj, text, x, y, div);
+		sendUpdate(obj, text, x, y);
 	} else {
 		$(this).remove();
 		sendDeleteUpdate(obj);
@@ -288,7 +281,7 @@ $(document).ready(function() {
 	})
 	.mouseup(function() {
 		isMouseDown = false;
-		// send server an update on position
+		sendUpdate(getObjFromDiv(dragObject, dragObject.text(), dragObject.position().left, dragObject.position().top));
 		dragObject = null;
 	})
 	.mousemove(function(event) {
