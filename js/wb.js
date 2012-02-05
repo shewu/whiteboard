@@ -13,6 +13,12 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
+		console.log("value = " + value);
+		console.log("style = " + style);
+		console.log("pos_x = " + pos_x);
+		console.log("pos_y = " + pos_y);
+		console.log("size_x = " + size_x);
+		console.log("size_y = " + size_y);
 		this.remove();
 		switch(this.type) {
 			case "textbox":
