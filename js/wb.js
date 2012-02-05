@@ -116,6 +116,8 @@ function retrieveAllUpdates() {
 						handleUpdateForNewObject(update);
 					}
 				}
+
+				setTimeout(retrieveAllUpdates, 1000);
 			}
 		}
 	});
