@@ -27,16 +27,19 @@ objects = new Array();
 
 // AJAX - keep updated with the server using jquery AJAX
 
-URL = "girlproblems.xvm.mit.edu/whiteboard/util/request.php";
+URL = "util/request.php";
 
 function createConnection() {
+	console.log("testing console.log");
 	$.ajax({
 		url: URL,
 		data: "action=create_connection&whiteboard_id=" + whiteboard_id,
 		success: function(data, textStatus, jqXHR) {
+			console.log("received " + textStatus);
 			if(textStatus == "success") {
 				connection_id = parseInt(connection_id);
 				get_id_string = "whiteboard_id=" + whiteboard_id + "&connection_id=" + connection_id;
+				retrieveAllObjects();
 			}
 		}
 	});
@@ -52,6 +55,7 @@ function retrieveAllObjects() {
 				for(var i = 0; i < objs.length; i++) {
 					objects = new Obj(parseInt(objs[i][0]), objs[i][1]);
 				}
+				retrieveAllUpdates();
 			}
 		}
 	});
@@ -271,4 +275,6 @@ $(document).ready(function() {
 			dragged = false;
 		}
 	});
+
+	createConnection();
 });
