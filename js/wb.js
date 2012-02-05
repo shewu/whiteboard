@@ -118,16 +118,30 @@ function retrieveAllUpdates() {
 }
 
 function sendUpdate(obj, value, x, y) {
-	data = "action=update_object";
-	data += "&object_id=" + obj.id;
-	data += "&value=" + value;
-	data += "&position_x=" + x;
-	data += "&position_y=" + y;
-	data += "&" + get_id_string;
-	$.ajax({
-		url: URL,
-		data: data
-	});
+	if(obj == null) {
+		data = "action=create_object";
+		data += "&type=textbox";
+		data += "&value=" + value;
+		data += "&style=" + style;
+		data += "&position_x" + x;
+		data += "&position_y" + y;
+		data += "&" + get_id_string;
+		s.ajax({
+			url: URL,
+			data: data
+		});
+	} else {
+		data = "action=update_object";
+		data += "&object_id=" + obj.id;
+		data += "&value=" + value;
+		data += "&position_x=" + x;
+		data += "&position_y=" + y;
+		data += "&" + get_id_string;
+		$.ajax({
+			url: URL,
+			data: data
+		});
+	}
 }
 
 function sendDeleteUpdate(obj) {
@@ -169,6 +183,7 @@ function getObjFromDiv(div) {
 			return objs[i];
 		}
 	}
+	return null;
 }
 
 function textareaBlurFn() {
@@ -186,10 +201,14 @@ function textareaBlurFn() {
 	div.mousedown(objectMousedownFn);
 	div.text(text);
 	if (text.length > 0) {
-		$(this).replaceWith(div);
 		sendUpdate(obj, text, x, y);
-		obj.div = div;
-		obj.currentlyBeingEditted = false;
+		if(obj == null) {
+			$(this).remove();
+		} else {
+			$(this).replaceWith(div);
+			obj.div = div;
+			obj.currentlyBeingEditted = false;
+		}
 	} else {
 		$(this).remove();
 		sendDeleteUpdate(obj);
