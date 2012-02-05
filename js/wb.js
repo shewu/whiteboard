@@ -27,6 +27,7 @@ function Obj(id, type) {
 
 			case "image":
 				this.div = createImagelet(value, pos_x, pos_y, this.id);
+				break;
 
 			default:
 				break;
@@ -397,11 +398,14 @@ function hamburgerMenuHandler(e) {
 }
 
 function createImagelet(url, posx, posy, objid) {
-	img = $('<img/>');
-	img.attr('src', url);
 	imglet = $('<div>');
 	imglet.addClass('textlet');
-	imglet.append(img);
+	imglet.css('background', url);
+	imglet.css('background-repeat', 'no-repeat');
+	getDim = new Image();
+	getDim.src = url;
+	imglet.css('height', getDim.height);
+	imglet.css('width', getDim.width);
 	imglet.css('left', posx);
 	imglet.css('top', posy);
 	imglet.attr('objid', '' + objid);
@@ -441,7 +445,6 @@ function processImgUpload() {
 		case "url":
 			if (imgURL.length > 0) {
 				// we need to do some url validation!!
-				//createImagelet(imgURL);
 				sendUpdateCreate("image", imgURL, posx, posy, null);
 			}
 			break;
