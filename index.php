@@ -4,7 +4,7 @@ include('util/header.php');
 ?>
 <body onload=resizeCapsule() onresize=resizeCapsule()>
 <header>
-Whiteboard
+Whiteboard <emph style="flush:right">by Brian Hamrick, Travis Hance, Sherry Wu</emph>
 </header>
 
 <div id=capsule>
