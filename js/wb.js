@@ -5,6 +5,7 @@ function Obj(id, type) {
 	this.type = type;
 	this.div = null;
 	this.currentlyBeingEdited = false;
+	this.deleted = false;
 
 	// deletes the div from view
 	this.remove = function() {
@@ -17,6 +18,8 @@ function Obj(id, type) {
 		if(this.currentlyBeingEdited)
 			return;
 		this.remove();
+		if(this.deleted)
+			return;
 		switch(this.type) {
 			case "textbox":
 				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, this.id);
@@ -77,8 +80,12 @@ function handleUpdateForNewObject(update) {
 				var id = parseInt(update[0]);
 				var obj = new Obj(id, data);
 				objs[id] = obj;
-				obj.update(update[1], update[2], update[3], update[4],
-				           update[5], update[6]);
+				if(update[7] == 0) { // Only update if the object isn't deleted
+					obj.update(update[1], update[2], update[3], update[4],
+						   update[5], update[6]);
+				} else {
+					obj.remove();
+				}
 			}
 		}
 	});
@@ -234,15 +241,13 @@ function textareaBlurFn() {
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
-			obj.currentlyBeingEditted = false;
+			obj.currentlyBeingEdited = false;
 			sendValueUpdate(obj, text);
 		}
 	} else {
+		obj.deleted = true;
 		$(this).remove();
-		if(obj != null) {
-			obj.currentlyBeingEditted = false;
-			sendDeleteUpdate(obj);
-		}
+		sendDeleteUpdate(obj);
 	}
 }
 
@@ -416,9 +421,7 @@ function processImgFileUpload(file) {
 	xhr.open('POST', 'http://api.imgur.com/2/upload.json');
 	xhr.onload = function() {
 		// here is the response from the server
-		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
-		//createImagelet(rsp);
 		sendUpdateCreate("image", rsp, posx, posy, null);
 	}
 
@@ -426,9 +429,10 @@ function processImgFileUpload(file) {
 }
 
 function processImgUpload() {
+	$('.overlayLightbox').css('display', 'none');
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
-	switch (document.forms['imgUploadForm'].elements['imgRadio']) {
+	switch ($('input[name=imgRadio]:checked', '#imgUploadForm').val()) {
 		case "file":
 			if (imgFile) {
 				processImgFileUpload(imgFile);
@@ -443,15 +447,6 @@ function processImgUpload() {
 			break;
 		default:
 			break;
-	}
-	if (imgURL.length > 0) {
-		// we need to do some validation
-		//createImagelet(imgURL);
-		sendUpdateCreate("image", imgURL, posx, posy, null);
-	} else if (imgFile) {
-		processImgFileUpload(imgFile);
-	} else {
-		alert("nothing to upload");
 	}
 }
 
