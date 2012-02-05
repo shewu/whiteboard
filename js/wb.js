@@ -4,6 +4,7 @@ function Obj(id, type) {
 	this.id = id;
 	this.type = type;
 	this.div = null;
+	this.currentlyBeingEditted = false;
 
 	// deletes the div from view
 	this.remove = function() {
@@ -13,6 +14,8 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
+		if(this.currentlyBeingEditted)
+			return;
 		this.remove();
 		switch(this.type) {
 			case "textbox":
@@ -186,6 +189,7 @@ function textareaBlurFn() {
 		$(this).replaceWith(div);
 		sendUpdate(obj, text, x, y);
 		obj.div = div;
+		obj.currentlyBeingEditted = false;
 	} else {
 		$(this).remove();
 		sendDeleteUpdate(obj);
@@ -201,6 +205,7 @@ function divClickFn(event) {
 	if(!dragged) {
 		var content = $(this).text();
 		var ta = $("<textarea />");
+		var obj = getObjFromDiv($(this));
 		ta.addClass("textlet");
 		ta.css('left', $(this).position().left);
 		ta.css('top', $(this).position().top);
@@ -210,6 +215,7 @@ function divClickFn(event) {
 		ta.val(content);
 		$(this).replaceWith(ta);
 		ta.focus();
+		obj.currentlyBeingEditted = true;
 	}
 }
 
