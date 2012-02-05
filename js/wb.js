@@ -117,9 +117,9 @@ function retrieveAllUpdates(onlyOnce) {
 	});
 }
 
-function sendUpdateCreate(value, x, y, div) {
+function sendUpdateCreate(type, value, x, y, div) {
 	data = "action=create_object";
-	data += "&type=textbox";
+	data += "&type=" + type;
 	data += "&value=" + value;
 	data += "&position_x=" + x;
 	data += "&position_y=" + y;
@@ -223,7 +223,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		if (obj == null) {
-			sendUpdateCreate(text, x, y, $(this));
+			sendUpdateCreate('textbox', text, x, y, $(this));
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
