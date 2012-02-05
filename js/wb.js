@@ -391,6 +391,8 @@ function processImgUpload() {
 		xhr.send(fd);
 		var serverResponse = shr.responseText;
 		alert(serverResponse);
+	} else {
+		alert("nothing selected to upload");
 	}
 }
 
