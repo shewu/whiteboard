@@ -153,6 +153,7 @@ function resizeCapsule() {
 }
 
 function resizeCanvas() {
+	alert('hi');
 	var screenViewportHeight = document.documentElement.clientHeight;
 	document.getElementById('canvas').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
 	return;
