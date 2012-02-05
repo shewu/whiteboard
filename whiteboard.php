@@ -11,9 +11,7 @@ if (isset($_POST["imgUploadSubmit"])) {
 			$pvars = array('image' => base64_encode($data), 'key' => 'ef01658e300dbcf7aa0ecdd18a3bed7c');
 			$timeout = 30;
 			$curl = curl_init();
-			if (!$curl) {
-				echo "null curl object";
-			}
+			echo $curl;
 
 			curl_setopt($curl, CURLOPT_URL, 'http://api.imgur.com/2/upload.xml');
 			curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
@@ -25,6 +23,8 @@ if (isset($_POST["imgUploadSubmit"])) {
 			var_dump($xml);
 
 			curl_close($curl);
+		} else {
+			echo "moving failed";
 		}
 	}
 }
