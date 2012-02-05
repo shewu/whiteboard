@@ -11,6 +11,9 @@ $(document).ready(function() {
 	$('#vmenu').click(function() {
 		$('#vmenu').hide();
 	});
+	$('#objmenu').click(function() {
+		$('#objmenu').hide();
+	});
 	$(document).click(function() {
 		$('#vmenu').hide();
 	});

@@ -31,7 +31,7 @@ footer {
 	padding: 5px;
 }
 
-#vmenu {
+.vmenu {
 	border: 1px solid #aaa;
 	position: absolute;
 	background: #fff;
@@ -46,14 +46,14 @@ footer {
 	z-index: 10;
 }
 
-#vmenu .firstLi {
+.vmenu .firstLi {
 	width: 100px;
 	display: block;
 	padding: 5px 10px;
 	cursor: pointer;
 }
 
-#vmenu .firstLi:hover {
+.vmenu .firstLi:hover {
 	background: #ddd;
 }
 
