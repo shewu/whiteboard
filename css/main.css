@@ -24,6 +24,10 @@ footer {
 	z-index: 1100;
 }
 
+#canvas {
+	overflow: auto;
+}
+
 .textlet {
 	position: absolute;
 	border: 1px dashed #666;
