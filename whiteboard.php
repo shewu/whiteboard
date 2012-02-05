@@ -4,8 +4,8 @@ include('util/header.php');
 
 <body onload="resizeCanvas()" onresize="resizeCanvas()">
 
-<canvas>
-</canvas>
+<div id=canvas>
+</div>
 
 <?
 include('util/footer.php');

@@ -4,7 +4,7 @@ include('util/header.php');
 ?>
 <body onload="resizeCapsule();" onresize="resizeCapsule();">
 <header>
-Header
+Whiteboard
 </header>
 
 <div id=capsule>
