@@ -2,16 +2,11 @@
 if (isset($_GET["imgUploadSubmit"])) {
 	$iUURL = $_GET["imgURL"];
 	$iUFile = $_GET["imgUpload"];
-	echo $iUURL . ";" . $iUFile;
 	if (strlen($iUURL) > 0) {
-		echo "upload url = ".$iUURL;
+		;
 	} else if (strlen($iUFile) > 0) {
-		echo "upload file = ".$iUFile;
-	} else {
-		echo "nothing uploaded";
+		;
 	}
-} else {
-	echo "imgUploadSubmit not set";
 }
 
 include('util/mysql.php');
