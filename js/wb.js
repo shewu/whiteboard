@@ -36,7 +36,7 @@ function createTextlet(e) {
 			var content = $(this).html();
 			var ta = $("<textarea/>");
 		});
-		div.val(text);
+		div.text(text);
 		$(this).replaceWith(div);
 	});
 	$textarea.click(function(event) {
