@@ -375,7 +375,10 @@ function textMenuHandler(e) {
 function imageMenuHandler(e) {
 	e.stopPropagation();
 	$('#vmenu').css('display', 'none');
-	alert('image');
+	overlay = $("<div>");
+	overlay.addClass("overlay");
+	overlay.text('hello');
+	$(this).append(overlay);
 	return false;
 }
 
