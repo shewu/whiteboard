@@ -20,6 +20,9 @@ switch($_GET["action"]) {
 	case "create_object": // Create an object and return the ID
 		echo create_object();
 		break;
+	case "delete_object":
+		delete_object();
+		break;
 }
 
 function get_updates() {
@@ -85,7 +88,29 @@ function update_object() {
 	if($_GET["size_y"]) {
 		$row["size_y"] = $_GET["size_y"];
 	}
-	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], NULL )";
+	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted], NULL )";
+	mysql_query($query);
+}
+
+function delete_object() {
+	$whiteboard_id = $_GET["whiteboard_id"];
+	if(!$whiteboard_id) {
+		return NULL;
+	}
+	$object_id = $_GET["object_id"];
+	if(!$object_id) {
+		return NULL;
+	}
+	// Verify that this object exists
+	$query = "SELECT * FROM objects WHERE id = $object_id AND whiteboard_id = $whiteboard_id";
+	$res = mysql_query($query);
+	if(mysql_num_rows($res) <= 0) {
+		return NULL;
+	}
+
+	$row = get_object_latest_update($object_id);
+	$row["deleted"] = 1;
+	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted], NULL )";
 	mysql_query($query);
 }
 
@@ -133,7 +158,7 @@ function create_object() {
 	$query = "INSERT INTO objects VALUES ( NULL, $whiteboard_id, '$type' )";
 	mysql_query($query);
 	$object_id = mysql_insert_id();
-	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], NULL )";
+	$query = "INSERT INTO object_updates VALUES ( NULL, $object_id, '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted], NULL )";
 	mysql_query($query);
 	return $object_id;
 }
@@ -202,7 +227,7 @@ function get_object_latest_update($object_id) {
 }
 
 function update_to_string($row) {
-	$ans = "[ $row[object_id], '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y] ]";
+	$ans = "[ $row[object_id], '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y], $row[deleted] ]";
 	return $ans;
 }
 ?>
