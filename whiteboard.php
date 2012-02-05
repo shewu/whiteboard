@@ -2,11 +2,13 @@
 if (isset($_GET["imgUploadSubmit"])) {
 	$iUURL = $_GET["imgURL"];
 	$iUFile = $_GET["imgUpload"];
+	var_dump($_GET);
+	var_dump($_FILES);
 	if (strlen($iUURL) > 0) {
 		;
 	} else if (strlen($iUFile) > 0) {
 		var_dump($_FILES);
-		;
+		var_dump($_FILE["imgUpload"]);
 	}
 }
 
