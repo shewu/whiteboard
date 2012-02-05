@@ -279,10 +279,10 @@ $(document).ready(function() {
 		isMouseDown = true;
 		dragged = false;
 	})
-	.mouseup(function() {
+	.mouseup(function(e) {
 		isMouseDown = false;
 		if(dragged && dragObject != null)
-			sendUpdate(getObjFromDiv(dragObject, dragObject.text(), dragObject.position().left, dragObject.position().top));
+			sendUpdate(getObjFromDiv(dragObject, dragObject.text(), dragObjectBaseX + e.pageX - dragBaseX, dragObjectBaseY + e.pageY - dragBaseY));
 		dragObject = null;
 	})
 	.mousemove(function(event) {
