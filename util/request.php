@@ -178,6 +178,7 @@ function create_object() {
 	} else {
 		$row["size_y"] = 0;
 	}
+	$row["deleted"] = 0;
 	$query = "INSERT INTO objects VALUES ( NULL, $whiteboard_id, '$type' )";
 	mysql_query($query);
 	$object_id = mysql_insert_id();
