@@ -387,6 +387,7 @@ $(document).ready(function() {
 		dragObject = null;
 	})
 	.mousemove(function(event) {
+		console.log("mousemove");
 		if(isMouseDown && dragObject != null) {
 			var curX = event.pageX;
 			var curY = event.pageY;
