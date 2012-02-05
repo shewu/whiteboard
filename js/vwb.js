@@ -17,5 +17,18 @@ $(document).ready(function() {
 	$('#imgUploadForm').bind('contextmenu',function(e) {
 		e.stopPropagation();
 	});
+	$('#imgUploadFile').focus(function() {
+		$('[name=imgRadio]').filter('[value=file]').prop("checked",true);
+	});
+	$('#imgUploadURL').focus(function() {
+		$('[name=imgRadio]').filter('[value=url]').prop("checked",true);
+	});
+	$('[name=imgRadio]').filter('[value=file]').click(function() {
+		$('#imgUploadFile').focus();
+		$('#imgUploadFile').select();
+	});
+	$('[name=imgRadio]').filter('[value=url]').click(function() {
+		$('#imgUploadURL').click();
+	});
 	menuEvent = null;
 });
