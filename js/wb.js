@@ -284,6 +284,11 @@ function objectMousedownFn(event) {
 	getObjFromDiv($(this)).currentlyBeingEdited = true;
 }
 
+function createTextbox() {
+	if(menuEvent != null)
+		createTextlet(menuEvent);
+}
+
 // creates a textlet focused
 function createTextlet(e) {
 	if (!e) {
