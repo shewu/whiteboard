@@ -306,6 +306,7 @@ function createTextlet(e) {
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	var $textarea = $("<textarea class=textlet style='top:"+posy+"px;left:"+posx+"px'/>");
+	$textarea.attr('title','-1');
 	$textarea.blur(textareaBlurFn);
 	$textarea.click(function(event) {
 		event.stopPropagation();
