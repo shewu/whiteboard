@@ -14,7 +14,7 @@ $query = 'SELECT * FROM whiteboards';
 $whiteboards = mysql_query($query) or die('Query failed: ' . mysql_error());
 $line = mysql_fetch_array($whiteboards);
 if($line) {
-	echo '<form name="select_whiteboard_form" action="whiteboard.php" method="POST">';
+	echo '<form name="select_whiteboard_form" action="whiteboard.php" method="GET">';
 	echo '<select name="whiteboard_id">';
 	do {
 		echo "<option value=\"$line[0]\">$line[1]</option>";
@@ -30,7 +30,7 @@ mysql_free_result($whiteboards);
 </div>
 
 <div>
-<form name="create_whiteboard_form" action="whiteboard.php" method="POST">
+<form name="create_whiteboard_form" action="whiteboard.php" method="GET">
 <input type="hidden" name="create" value="yes" />
 <input type="text" name="whiteboard_name" />
 <input type="submit" value="Make whiteboard!" />
