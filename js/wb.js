@@ -24,7 +24,9 @@ function textareaBlurFn() {
 	div.css('white-space', 'pre');
 	div.click(divClickFn);
 	div.text(text);
-	$(this).replaceWith(div);
+	if (text.length > 0) {
+		$(this).replaceWith(div);
+	}
 }
 
 function divClickFn(event) {
