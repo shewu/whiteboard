@@ -55,11 +55,6 @@ function objectMousedownFn(event) {
 	dragObject = $(this);
 }
 
-function blinkDisabled(object) {
-	object.attr('disabled', 'disabled');
-	object.removeAttr('disabled');
-}
-
 function createTextlet(e) {
 	if (!e) {
 		e = window.event;
@@ -97,7 +92,6 @@ $(document).ready(function() {
 	})
 	.mouseup(function() {
 		isMouseDown = false;
-		blinkDisabled(dragObject);
 		// send server an update on position
 		dragObject = null;
 	})
@@ -107,7 +101,6 @@ $(document).ready(function() {
 			var curY = event.pageY;
 			dragObject.css('left', dragObjectBaseX + curX - dragBaseX);
 			dragObject.css('top', dragObjectBaseY + curY - dragBaseY);
-			blinkDisabled(dragObject);
 			dragged = true;
 		}
 	});
