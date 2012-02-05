@@ -285,7 +285,7 @@ function objectMousedownFn(event) {
 }
 
 function createTextbox() {
-	if(menuEvent != null)
+	if (menuEvent != null)
 		createTextlet(menuEvent);
 }
 
@@ -367,6 +367,7 @@ $(document).ready(function() {
 
 function textMenuHandler(e) {
 	e.stopPropagation();
+	$('#vmenu').css('display', 'none');
 	createTextbox();
 	return false;
 }
