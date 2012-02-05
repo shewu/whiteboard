@@ -371,6 +371,7 @@ function imageMenuHandler(e) {
 		posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
+	alert(posx + " " + posy);
 	$('#vmenu').css('display', 'none');
 	$('.overlayLightbox').css('display', 'block');
 	return false;
@@ -395,6 +396,7 @@ function processImgFileUpload(file) {
 	xhr.onload = function() {
 		// here is the response from the server
 		var rsp = JSON.parse(xhr.responseText).upload.links.imgur_page;
+		alert(rsp);
 		img = $('<img/>');
 		img.attr('src', rsp)
 		imglet = $("<div>");
