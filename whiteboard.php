@@ -78,13 +78,13 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <div class=overlayLightbox>
 <div class=overlayContent>
 <h3>Add an image</h3>
-<form>
+<form id=imgUploadForm action="<?php echo $PHP_SELF;?>" method=GET>
 <ul>
-<li>Upload an image: <input type=file name=imgUpload size=1024 /></li>
-<li>Paste from source: <input type=text name=imgURL /></li>
+<li>Upload an image: <input type=file id=imgUploadFile name=imgUpload size=1024 /></li>
+<li>Paste from source: <input type=text id=imgUploadURL name=imgURL /></li>
 </ul>
 <hr/>
-<div><input type=submit name=Submit /> or <a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
+<div><input type=submit name=imgUploadSubmit value=Submit /> or <a href="javascript:$('.overlayLightbox').css('display', 'none');">Close</a></div>
 </form>
 </div>
 </div>
