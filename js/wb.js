@@ -30,6 +30,7 @@ objects = new Array();
 URL = "girlproblems.xvm.mit.edu/whiteboard/util/request.php";
 
 function createConnection() {
+	console.log("testing console.log");
 	$.ajax({
 		url: URL,
 		data: "action=create_connection&whiteboard_id=" + whiteboard_id,
