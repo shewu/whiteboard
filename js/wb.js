@@ -381,6 +381,17 @@ function hamburgerMenuHandler(e) {
 	return false;
 }
 
+function createImagelet(url) {
+	img = $('<img/>');
+	img.attr('src', url);
+	imglet = $('<div>');
+	imglet.addClass('textlet');
+	imglet.append(img);
+	imglet.css('left', posx);
+	imglet.css('top', posy);
+	$('#canvas').append(imglet);
+}
+
 function processImgFileUpload(file) {
 	if (!file || !file.type.match(/image.*/)) return;
 
@@ -394,14 +405,7 @@ function processImgFileUpload(file) {
 		// here is the response from the server
 		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
-		img = $('<img/>');
-		img.attr('src', rsp)
-		imglet = $("<div>");
-		imglet.addClass('textlet');
-		imglet.append(img);
-		imglet.css('left', posx);
-		imglet.css('top', posy);
-		$('#canvas').append(imglet);
+		createImagelet(rsp);
 	}
 
 	xhr.send(fd);
@@ -409,10 +413,12 @@ function processImgFileUpload(file) {
 
 function processImgUpload() {
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
-	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].value;
+	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].files[0];
 	if (imgURL.length > 0) {
-		;
-	} else {
+		// we need to do some validation
+		createImagelet(imgURL);
+	} else if (imgFile) {
+		processImgFileUpload(imgFile);
 	}
 }
 
