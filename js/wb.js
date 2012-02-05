@@ -107,6 +107,8 @@ $(document).ready(function() {
 			dragObject.css('left', dragObjectBaseX + curX - dragBaseX);
 			dragObject.css('top', dragObjectBaseY + curY - dragBaseY);
 			dragged = true;
+		} else {
+			dragged = false;
 		}
 	});
 });
