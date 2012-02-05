@@ -14,7 +14,7 @@ switch($_GET["action"]) {
 	case "get_objects": // Get all object info
 		echo get_objects();
 		break;
-	case "get_all_latest_upates":
+	case "get_all_latest_updates":
 		echo get_all_latest_updates();
 		break;
 }
