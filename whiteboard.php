@@ -55,6 +55,7 @@ $(document).ready(function() {
 		$('#vmenu').hide();
 	});
 	whiteboard_id = <?php echo "$whiteboard_id"; ?>;
+	alert('hi ' + whiteboard_id);
 });
 </script>
 
