@@ -22,6 +22,9 @@ function Obj(id, type) {
 				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, this.id);
 				break;
 
+			case "image":
+				this.div = createImagelet(value, pos_x, pos_y);
+
 			default:
 				break;
 		}
@@ -227,7 +230,7 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		if (obj == null) {
-			sendUpdateCreate('textbox', text, x, y, $(this));
+			sendUpdateCreate("textbox", text, x, y, $(this));
 		} else {
 			$(this).replaceWith(div);
 			obj.div = div;
@@ -388,7 +391,7 @@ function hamburgerMenuHandler(e) {
 	return false;
 }
 
-function createImagelet(url) {
+function createImagelet(url, posx, posy) {
 	img = $('<img/>');
 	img.attr('src', url);
 	imglet = $('<div>');
@@ -398,6 +401,7 @@ function createImagelet(url) {
 	imglet.css('top', posy);
 	imglet.mousedown(objectMousedownFn);
 	$('#canvas').append(imglet);
+	return imglet;
 }
 
 function processImgFileUpload(file) {
@@ -414,6 +418,7 @@ function processImgFileUpload(file) {
 		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
 		createImagelet(rsp);
+		sendUpdateCreate("image", rsp, posx, posy, null);
 	}
 
 	xhr.send(fd);
@@ -439,7 +444,8 @@ function processImgUpload() {
 	}
 	if (imgURL.length > 0) {
 		// we need to do some validation
-		createImagelet(imgURL);
+		//createImagelet(imgURL);
+		sendUpdateCreate("image", imgURL, posx, posy, null);
 	} else if (imgFile) {
 		processImgFileUpload(imgFile);
 	} else {
