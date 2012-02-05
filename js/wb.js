@@ -17,6 +17,9 @@ function resizeCanvas() {
 
 function createTextlet() {
 	var e = window.event;
+	if (!e) {
+		console.log("e is null");
+	}
 	var posx = 0, posy = 0;
 	if (e.pageX || e.pageY) {
 		posx = e.pageX;
