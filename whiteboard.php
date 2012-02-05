@@ -79,10 +79,10 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <div class=overlayContent>
 <h3>Add an image</h3>
 <form>
-<ol>
+<ul>
 <li>Upload an image: <input type=file name=imgUpload size=1024 /></li>
 <li>Paste from source: <input type=text name=imgURL /></li>
-</ol>
+</ul>
 <input type=submit name=Submit />
 </form>
 <hr/>
