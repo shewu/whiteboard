@@ -363,7 +363,6 @@ function imageMenuHandler(e) {
 	if (!e) {
 		e = window.event;
 	}
-	var posx = 0, posy = 0;
 	if (e.pageX || e.pageY) {
 		posx = e.pageX;
 		posy = e.pageY;
@@ -371,7 +370,6 @@ function imageMenuHandler(e) {
 		posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
 		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
-	alert(posx + " " + posy);
 	$('#vmenu').css('display', 'none');
 	$('.overlayLightbox').css('display', 'block');
 	return false;
@@ -398,6 +396,7 @@ function processImgFileUpload(file) {
 		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
 		alert(rsp);
+		alert(posx + " " + posy);
 		img = $('<img/>');
 		img.attr('src', rsp)
 		imglet = $("<div>");
