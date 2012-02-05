@@ -254,7 +254,8 @@ function get_object_latest_update($object_id) {
 }
 
 function escape_string_for_js($st) {
-	return str_replace("\'", "\\\'", str_replace("\\", "\\\\", $st));
+	//return str_replace("\'", "\\\'", str_replace("\\", "\\\\", $st));
+	return mysql_real_escape_string($st);
 }
 
 function update_to_string($row) {
