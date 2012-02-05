@@ -400,7 +400,7 @@ function hamburgerMenuHandler(e) {
 function createImagelet(url, posx, posy, objid) {
 	imglet = $('<div>');
 	imglet.addClass('textlet');
-	imglet.css('background', 'url('+url+')');
+	imglet.css('background-image', 'url("'+url+'")');
 	imglet.css('background-repeat', 'no-repeat');
 	getDim = new Image();
 	getDim.src = url;
