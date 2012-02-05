@@ -2,14 +2,17 @@
 require_once("mysql.php");
 
 switch($_GET["action"]) {
-	case "get_updates":
+	case "get_updates": // Get updates since the last fetch
 		echo get_updates();
 		break;
-	case "update_object":
+	case "update_object": // Update an object
 		update_object();
 		break;
-	case "create_connection":
+	case "create_connection": // Initialize a new connection
 		echo get_new_connection();
+		break;
+	case "get_objects": // Get all object info
+		echo get_objects();
 		break;
 }
 
@@ -45,6 +48,26 @@ function update_object() {
 	
 }
 
+function get_objects() {
+	$whiteboard_id = $_GET["whiteboard_id"];
+	$query = "SELECT * FROM objects WHERE whiteboard_id = $whiteboard_id";
+	$res = mysql_query($query);
+	$row = mysql_fetch_array($res, MYSQL_ASSOC);
+	$ans = "[ ";
+	if($row) {
+		$ans = $ans . object_to_string($row);
+		while($row = mysql_fetch_array($res, MYSQL_ASSOC)) {
+			$ans = $ans . ", " . object_to_string($row);
+		}
+	}
+	$ans = $ans . " ]";
+	return $ans;
+}
+
+function object_to_string($row) {
+	return "[ $row[id], '$row[type]' ]";
+}
+
 function update_user_timestamp($connection_id) {
 	// Updates the user's last pull to the current time and returns the old value
 	$query = "SELECT * FROM user_connections WHERE id = $connection_id"; 
@@ -60,7 +83,7 @@ function update_user_timestamp($connection_id) {
 }
 
 function update_to_string($row) {
-	$ans = "[ '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y] ]";
+	$ans = "[ $row[object_id], '$row[value]', '$row[style]', $row[position_x], $row[position_y], $row[size_x], $row[size_y] ]";
 	return $ans;
 }
 ?>
