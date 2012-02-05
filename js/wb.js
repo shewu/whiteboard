@@ -5,6 +5,7 @@ function Obj(id, type) {
 	this.type = type;
 	this.div = null;
 	this.currentlyBeingEdited = false;
+	this.deleted = false;
 
 	// deletes the div from view
 	this.remove = function() {
@@ -14,7 +15,7 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
-		if(this.currentlyBeingEdited)
+		if(this.currentlyBeingEdited || this.deleted)
 			return;
 		this.remove();
 		switch(this.type) {
@@ -240,7 +241,7 @@ function textareaBlurFn() {
 	} else {
 		$(this).remove();
 		if(obj != null) {
-			obj.currentlyBeingEdited = false;
+			obj.deleted = true;
 			sendDeleteUpdate(obj);
 		}
 	}
