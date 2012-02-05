@@ -2,7 +2,9 @@
 include('util/header.php');
 ?>
 
-Hello, world!
+<div id=viewport>
+Hello, world! Time to test automatic pulling.
+</div>
 
 <?
 include('util/footer.php');

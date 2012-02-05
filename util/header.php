@@ -6,8 +6,8 @@
 <script src="js/jq.js"></script>
 <script src="js/wb.js"></script>
 </head>
-<body>
+<body onload="resizeViewport();">
 <header>
-
+Header
 </header>
 
