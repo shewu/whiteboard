@@ -27,9 +27,9 @@ if(get_field('create') == 'yes') {
 	$whiteboard_id = get_field('whiteboard_id');
 	echo "whiteboardid=$whiteboard_id<br><br><br>";
 	$result = mysql_query("SELECT name FROM whiteboards WHERE id=$whiteboard_id") or die('select query failed');
-	$row = mysql_fetch_array($result, MYSQL_ASSOC);
+	$row = mysql_fetch_assoc($result);
 	if($row) {
-		$name = $row[0];
+		$name = $row['name'];
 	} else {
 		die('no whiteboard with that id');
 	}
