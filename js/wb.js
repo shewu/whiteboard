@@ -59,9 +59,13 @@ function createConnection() {
 }
 
 function retrieveAllObjects() {
+	var data = {};
+	data["action"] = "get_objects";
+	data["whiteboard_id"] = whiteboard_id;
+	data["connection_id"] = connection_id;
 	$.ajax({
 		url: URL,
-		data: "action=get_objects&" + get_id_string,
+		data: data, //"action=get_objects&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
 				objs_unparsed = eval(data);
@@ -77,9 +81,14 @@ function retrieveAllObjects() {
 }
 
 function handleUpdateForNewObject(update) {
+	var data = {};
+	data["action"] = "get_object_type";
+	data["object_id"] = update[0];
+	data["whiteboard_id"] = whiteboard_id;
+	data["connection_id"] = connection_id;
 	$.ajax({
 		url: URL,
-		data: "action=get_object_type&object_id=" + update[0] + "&" + get_id_string,
+		data: data, //"action=get_object_type&object_id=" + update[0] + "&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
 				var id = parseInt(update[0]);
@@ -98,11 +107,15 @@ function handleUpdateForNewObject(update) {
 
 var retrieveAllUpdatesFirstTime = true;
 function retrieveAllUpdates(onlyOnce) {
-	var action = (retrieveAllUpdatesFirstTime ? "get_all_latest_updates" : "get_updates");
 	retrieveAllUpdatesFirstTime = false;
+
+	var data = {};
+	data["action"] = (retrieveAllUpdatesFirstTime ? "get_all_latest_updates" : "get_updates");
+	data["whiteboard_id"] = whiteboard_id;
+	data["connection_id"] = connection_id;
 	$.ajax({
 		url: URL,
-		data: "action=" + action + "&" + get_id_string,
+		data: data, //"action=" + action + "&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
 				var updates = eval(data);
@@ -133,12 +146,14 @@ function retrieveAllUpdates(onlyOnce) {
 }
 
 function sendUpdateCreate(type, value, x, y, div) {
-	data = "action=create_object";
-	data += "&type=" + type;
-	data += "&value=" + value;
-	data += "&position_x=" + x;
-	data += "&position_y=" + y;
-	data += "&" + get_id_string;
+	var data = {};
+	data["action"] = "create_object";
+	data["type"] = type;
+	data["value"] = value;
+	data["position_x"] = x;
+	data["position_y"] = y;
+	data["whiteboard_id"] = whiteboard_id;
+	data["connection_id"] = connection_id;
 	$.ajax({
 		url: URL,
 		data: data,
@@ -153,10 +168,12 @@ function sendUpdateCreate(type, value, x, y, div) {
 }
 
 function sendValueUpdate(obj, value) {
-	data = "action=update_object";
-	data += "&object_id=" + obj.id;
-	data += "&value=" + value;
-	data += "&" + get_id_string;
+	var data = {};
+	data["action"] = "update_object";
+	data["object_id"] = obj.id;
+	data["value"] = value;
+	data["whiteboard_id"] = whiteboard_id;
+	data["connection_id"] = connection_id;
 	$.ajax({
 		url: URL,
 		data: data,
@@ -169,11 +186,13 @@ function sendValueUpdate(obj, value) {
 }
 
 function sendMoveUpdate(obj, x, y) {
-	data = "action=update_object";
-	data += "&object_id=" + obj.id;
-	data += "&position_x=" + x;
-	data += "&position_y=" + y;
-	data += "&" + get_id_string;
+	var data = {};
+	data["action"] = "update_object";
+	data["object_id"] = obj.id;
+	data["position_x"] = x;
+	data["position_y"] = y;
+	data["whiteboard_id"] = whiteboard_id;
+	data["connection_id"] = connection_id;
 	$.ajax({
 		url: URL,
 		data: data,
@@ -185,9 +204,11 @@ function sendMoveUpdate(obj, x, y) {
 }
 
 function sendDeleteUpdate(obj) {
-	data = "action=delete_object";
-	data += "&object_id=" + obj.id;
-	data += "&" + get_id_string;
+	var data = {};
+	data["action"] = "delete_object";
+	data["object_id"] = obj.id;
+	data["whiteboard_id"] = whiteboard_id;
+	data["connection_id"] = connection_id;
 	$.ajax({
 		url: URL,
 		data: data,
@@ -205,18 +226,6 @@ footerHeight = 12;
 
 posx = -1;
 posy = -1;
-
-function resizeCapsule() {
-	var screenViewportHeight = document.documentElement.clientHeight;
-	document.getElementById('capsule').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
-	return;
-}
-
-function resizeCanvas() {
-	var screenViewportHeight = document.documentElement.clientHeight;
-	document.getElementById('canvas').style.height = screenViewportHeight - headerHeight - footerHeight - 1 + 'px';
-	return;
-}
 
 function getObjFromDiv(div) {
 	id = div.attr('objid');

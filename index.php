@@ -2,7 +2,7 @@
 include('util/mysql.php');
 include('util/header.php');
 ?>
-<body onload="resizeCapsule();" onresize="resizeCapsule();">
+<body>
 <header>
 Whiteboard
 </header>

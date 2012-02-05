@@ -9,9 +9,9 @@ article, header, footer {
 }
 
 header {
-	width: 99%;
 	background: #DDD;
 	height: 16px;
+	width: 100%;
 	z-index: 1100;
 	font-size: small;
 }
@@ -21,6 +21,8 @@ footer {
 	font-size: x-small;
 	text-align: center;
 	height: 12px;
+	width: 100%;
+	bottom: 0px;
 	z-index: 1100;
 }
 
