@@ -65,7 +65,7 @@ function handleUpdateForNewObject(update) {
 		data: "action=get_object_type&object_id=" + update[0] + "&" + get_id_string,
 		success: function(data, textStatus, jqXHR) {
 			if(textStatus == "success") {
-				var obj = new Obj(parseInt(update[0]), data));
+				var obj = new Obj(parseInt(update[0]), data);
 				objs.push(obj);	
 				obj.update(update[1], update[2], update[3], update[4],
 				           update[5], update[6]);
