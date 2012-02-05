@@ -15,9 +15,11 @@ function Obj(id, type) {
 
 	// updates the div
 	this.update = function(value, style, pos_x, pos_y, size_x, size_y) {
-		if(this.currentlyBeingEdited || this.deleted)
+		if(this.currentlyBeingEdited)
 			return;
 		this.remove();
+		if(this.deleted)
+			return;
 		switch(this.type) {
 			case "textbox":
 				this.div = createTextletUnfocused(value, pos_x, pos_y, size_x, size_y, this.id);
@@ -239,11 +241,9 @@ function textareaBlurFn() {
 			sendValueUpdate(obj, text);
 		}
 	} else {
+		obj.deleted = true;
 		$(this).remove();
-		if(obj != null) {
-			obj.deleted = true;
-			sendDeleteUpdate(obj);
-		}
+		sendDeleteUpdate(obj);
 	}
 }
 
