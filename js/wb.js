@@ -4,6 +4,7 @@ function resizeViewport() {
 	var headerHeight = 16;
 	var footerHeight = 10;
 	document.getElementById('viewport').style.height = screenViewportHeight - headerHeight - footerHeight;
+	console.log("resizing to " + (screenViewportHeight - headerHeight - footerHeight));
 	return;
 }
 
