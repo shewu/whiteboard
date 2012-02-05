@@ -99,6 +99,7 @@ function handleUpdateForNewObject(update) {
 						   update[5], update[6]);
 				} else {
 					obj.remove();
+					obj.deleted = true;
 				}
 			}
 		}
@@ -303,9 +304,9 @@ function objectContextmenuFn(event) {
 }
 
 function objectDeleteMenuHandler(event) {
+	$(this).remove();
 	var obj = getObjFromDiv(objmenuObject);
 	obj.deleted = true;
-	obj.remove();
 	sendDeleteUpdate(obj);
 }
 
@@ -315,6 +316,7 @@ function objectMousedownFn(event) {
 	dragObjectBaseX = $(this).position().left;
 	dragObjectBaseY = $(this).position().top;
 	dragObject = $(this);
+	isMouseDown = true;
 	getObjFromDiv($(this)).currentlyBeingEdited = true;
 }
 
@@ -372,7 +374,7 @@ $(document).ready(function() {
 	dragObjectBaseY = 0;
 	dragged = false;
 
-	$('body').mousedown(function() {
+	$('#canvas').mousedown(function() {
 		isMouseDown = true;
 		dragged = false;
 	})

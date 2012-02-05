@@ -47,4 +47,3 @@ $('#canvas').scroll(function() {
 		$('#canvas').css('width', $('#canvas').width + 100);
 	}
 });
-
