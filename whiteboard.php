@@ -1,36 +1,4 @@
 <?php
-$imgurURL = "";
-if (isset($_POST["imgUploadSubmit"])) {
-	$iUURL = $_POST["imgURL"];
-	if (strlen($iUURL) > 0) {
-		echo "url";
-	} else if (strlen($_FILES['imgUpload']['name']) > 0) {
-		if (move_uploaded_file($_FILES['imgUpload']['tmp_name'], "/tmp/".$_FILES['imgUpload']['name'])) {
-			$data = file_get_contents('/tmp/'.$_FILES['imgUpload']['name']);
-
-			$pvars = array('image' => base64_encode($data), 'key' => 'ef01658e300dbcf7aa0ecdd18a3bed7c');
-			$timeout = 30;
-			$curl = curl_init();
-
-			curl_setopt($curl, CURLOPT_URL, 'http://api.imgur.com/2/upload.xml');
-			curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
-			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
-
-			$xml = curl_exec($curl);
-			$xmlh = simplexml_load_string($xml);
-			$imgurURL = $xmlh->links->original;
-
-			curl_close($curl);
-		} else {
-			echo "moving failed";
-		}
-	} else {
-		echo "wat";
-	}
-}
-
 include('util/mysql.php');
 
 function get_field($key) {
@@ -70,7 +38,6 @@ if(get_field('create') == 'yes') {
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <script src="js/jq.js"></script>
 <script src="js/wb.js"></script>
-<script src="js/fu.js"></script>
 <script src="js/vwb.js"></script>
 <script>
 whiteboard_id = <?php echo "$whiteboard_id"; ?>;
@@ -81,6 +48,7 @@ whiteboard_id = <?php echo "$whiteboard_id"; ?>;
 <body onload="resizeCanvas();" onresize="resizeCanvas();">
 
 <header>
+<a href=/whiteboard/>Home</a> - <? echo $name; ?>
 </header>
 
 <div id=vmenu class=vmenu>
