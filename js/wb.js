@@ -279,6 +279,8 @@ function divClickFn(event) {
 	}
 }
 
+var objmenuObject;
+
 function objectContextmenuFn(event) {
 	event.stopPropagation();
 	$('#vmenu').hide();
