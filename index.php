@@ -3,12 +3,11 @@ include('util/mysql.php');
 include('util/header.php');
 ?>
 
-<div id=viewport>
+<div id=capsule>
 Hello, world! Time to test automatic pulling.
 </div>
 
 <?
-
 $whiteboards = get_whiteboards();
 if(count($whiteboards) == 0) {
 	echo 'No whiteboards currently';
