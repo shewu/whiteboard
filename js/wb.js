@@ -26,6 +26,8 @@ function textareaBlurFn() {
 	div.text(text);
 	if (text.length > 0) {
 		$(this).replaceWith(div);
+	} else {
+		$(this).remove();
 	}
 }
 
