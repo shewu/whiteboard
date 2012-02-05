@@ -395,7 +395,7 @@ function processImgFileUpload(file) {
 	xhr.open('POST', 'http://api.imgur.com/2/upload.json');
 	xhr.onload = function() {
 		// here is the response from the server
-		var rsp = JSON.parse(xhr.responseText).upload.links.imgur_page;
+		var rsp = JSON.parse(xhr.responseText).upload.links.original;
 		alert(rsp);
 		img = $('<img/>');
 		img.attr('src', rsp)
