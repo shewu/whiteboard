@@ -22,7 +22,7 @@ footer {
 }
 
 .textlet {
-	position: relative;
+	position: absolute;
 	background: black;
 	color: white;
 	display: inline-block;
