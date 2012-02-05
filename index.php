@@ -2,6 +2,10 @@
 include('util/mysql.php');
 include('util/header.php');
 ?>
+<body onload="resizeCapsule();" onresize="resizeCapsule();">
+<header>
+Header
+</header>
 
 <div id=capsule>
 <?
