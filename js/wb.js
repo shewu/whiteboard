@@ -368,29 +368,29 @@ function hamburgerMenuHandler(e) {
 	return false;
 }
 
+function processImgFileUpload(file) {
+	if (!file || !file.type.match(/image.*/)) return;
+
+	var fd = new FormData();
+	fd.append('image', file);
+	fd.append('key', 'ef01658e300dbcf7aa0ecdd18a3bed7c');
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'http://api.imgur.com/2/upload.json');
+	xhr.onload = function() {
+		JSON.parse(xhr.responseText).upload.links.imgur_page;
+	}
+
+	xhr.send(fd);
+	var serverResponse = shr.responseText;
+	alert(serverResponse);
+}
+
 function processImgUpload() {
 	imgURL = document.forms['imgUploadForm'].elements['imgURL'].value;
 	imgFile = document.forms['imgUploadForm'].elements['imgUpload'].value;
 	if (imgURL.length > 0) {
 		;
-	} else if (imgFile.length > 0) {
-		file = imgFile;
-
-		if (!file || !file.type.match(/image.*/)) return;
-
-		var fd = new FormData();
-		fd.append('image', file);
-		fd.append('key', 'ef01658e300dbcf7aa0ecdd18a3bed7c');
-
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'http://api.imgur.com/2/upload.json');
-		xhr.onload = function() {
-			JSON.parse(xhr.responseText).upload.links.imgur_page;
-		}
-
-		xhr.send(fd);
-		var serverResponse = shr.responseText;
-		alert(serverResponse);
 	} else {
 		alert("nothing selected to upload");
 	}
