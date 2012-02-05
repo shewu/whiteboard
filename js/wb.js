@@ -382,7 +382,7 @@ function processImgFileUpload(file) {
 	}
 
 	xhr.send(fd);
-	var serverResponse = shr.responseText;
+	var serverResponse = xhr.responseText;
 	alert(serverResponse);
 }
 
