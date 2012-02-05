@@ -414,7 +414,7 @@ function processImgFileUpload(file) {
 		// here is the response from the server
 		$('.overlayLightbox').css('display', 'none');
 		var rsp = JSON.parse(xhr.responseText).upload.links.original;
-		createImagelet(rsp);
+		//createImagelet(rsp);
 		sendUpdateCreate("image", rsp, posx, posy, null);
 	}
 
@@ -433,7 +433,8 @@ function processImgUpload() {
 		case "url":
 			if (imgURL.length > 0) {
 				// we need to do some url validation!!
-				createImagelet(imgURL);
+				//createImagelet(imgURL);
+				sendUpdateCreate("image", imgURL, posx, posy, null);
 			}
 			break;
 		default:
