@@ -92,7 +92,7 @@ function retrieveAllUpdates() {
 			if(textStatus == "success") {
 				var updates = eval(data);
 				for(update in updates) {
-					console.log("update: " + update.join(";"));
+					console.log("update: " + update);
 					var id = parseInt(update[0]);
 					var deleted = update[7];
 					var found = false;
