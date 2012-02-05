@@ -1,3 +1,4 @@
+
 // keep these two values in sync with the css kthx
 var headerHeight = 16;
 var footerHeight = 12;
@@ -16,10 +17,16 @@ function resizeCanvas() {
 
 function createTextlet() {
 	var e = window.event;
-	var parentOffset = $(this).parent().offset();
-	var relX = e.pageX - parentOffset.left;
-	var relY = e.pageY - parentOffset.top;
-	console.log("relX = " + relX + " relY = " + relY);
+	var posx = 0, posy = 0;
+	if (e.pageX || e.pageY) {
+		posx = e.pageX;
+		posy = e.pageY;
+	}
+	else if (e.clientX || e.clientY) {
+		posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+		posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+	}
+	console.log("relX = " + posx + " relY = " + posy);
 	$('canvas').append('<div class=textlet style="margin-top:'+relY+';margin-left:'+relX+';">Hello</div>');
 }
 
